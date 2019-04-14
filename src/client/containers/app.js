@@ -1,11 +1,12 @@
 import React from 'react'
 import { connect } from 'react-redux'
 
-import BoardMain from './../components/BoardMain'
+import { BoardMain } from './../components/BoardMain'
 
 const App = ({message}) => {
+  console.log(PIECES);
   return (
-    <BoardMain> </BoardMain>
+    <BoardMain/>
   )
 }
 
