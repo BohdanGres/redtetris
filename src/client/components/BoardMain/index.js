@@ -2,6 +2,7 @@
 import React from 'react'
 
 import { Row } from './../Row/index';
+import {connect} from "react-redux";
 
 
 
@@ -16,11 +17,22 @@ const buildRow = (n) => {
 
 // buildRow()
 
-export const BoardMain = () => {
+const BoardMain = ({width, height, message}) => {
+  console.log('=====================');
+  console.log(width, height, message);
+  console.log('=====================');
   return (
     <div className="mainBoard">
-      {buildRow(ROW)}
+      {buildRow(height)}
     </div>
   )
 }
 
+
+
+const mapStateToProps = (state) => {
+  return state
+}
+
+
+export default connect(mapStateToProps, null)(BoardMain)
