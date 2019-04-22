@@ -11,7 +11,7 @@ import {alert} from './actions/alert'
 import {init} from './actions/init'
 
 
-
+import configUi from '../../etc/config-ui';
 
 
 
@@ -23,8 +23,8 @@ import openSocket from 'socket.io-client';
 
 const initialState = {
   array: [],
-  width: 10,
-  height:10
+  width: configUi.COLUMN,
+  height:configUi.ROW
 };
 
 
@@ -38,9 +38,9 @@ const store = createStore(
 const socket = openSocket('http://localhost:3004');
 
 socket.on('action', (data) => {
-  console.log('from socket nodejs',  data);
+ //console.log('from socket nodejs',  data);
   if (data.type == 'init') {
-    console.log('asdsadsadasdsads');
+    //console.log('asdsadsadasdsads');
     store.dispatch(init(data.body))
   }
 });
@@ -65,7 +65,7 @@ ReactDom.render((
 
 
 
-setInterval(() => {socket.emit('action', { type: 'init'} )}, 200)
+setInterval(() => {socket.emit('action', { type: 'init'} )}, 1000)
 
 /*
 
