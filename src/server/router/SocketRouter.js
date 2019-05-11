@@ -1,3 +1,7 @@
+
+import config_be from './../../../etc/config-be';
+
+
 export default function initRouter(socket) {
 
 
@@ -27,20 +31,34 @@ export default function initRouter(socket) {
 
 const randomTable = () => {
 
-  const x = getRandomInt(5);
-  const y = getRandomInt(5);
-  const xy = [].fill(0,0,x);
-  for (let i =0; i < x ; i++) {
-    xy[i] = [].fill(0,0,y);
+  const y = config_be.bordParam.width;
+  const x = config_be.bordParam.height;
+  let board = [];
+  for (let i =0; i < x; i++) {
+    let tmpY = [];
+    for (let j = 0; j < y; j++) {
+      tmpY.push(getRandomInt(5));
+    }
+    board.push(tmpY);
   }
+  // console.log(board);
+  // console.log(x, y);
   return {
-    array: xy,
-    width: x,
-    height:y
+    array: board,
+    width: y,
+    height:x
   };
 
 };
 
 
+const generate = (n) => {
+  const ar = [];
+  for (let i = 0; i < n; i++) {
+    ar.push(getRandomInt(3))
+  }
+  return ar;
+};
 
-const getRandomInt = (max) => Math.floor(Math.random() * Math.floor(max)) + 5;
+
+const getRandomInt = (max) => Math.floor(Math.random() * Math.floor(max));

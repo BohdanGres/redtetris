@@ -3,12 +3,26 @@ import debug from 'debug'
 
 import initRouter from './router/SocketRouter';
 
+import mongoose from 'mongoose';
+
 const logerror = debug('tetris:error'),
   loginfo = debug('tetris:info');
+
+mongoose.Promise = Promise;
+mongoose.connect(`mongodb://localhost/mongo42`);
+
+import Game from './model/Game';
+
+
+
+
 
 const initApp = (app, params, cb) => {
   const { host, port } = params;
   const handler = (req, res) => {
+
+    // if (req.url == 'test')
+    console.log(req.url);
     const file = req.url === '/bundle.js' ? '/../../build/bundle.js' : '/../../index.html'
     fs.readFile(__dirname + file, (err, data) => {
       if (err) {
@@ -31,12 +45,19 @@ const initApp = (app, params, cb) => {
 
 const initEngine = io => {
   io.on('connection', function(socket){
-    loginfo("Socket connected: " + socket.id)
+    console.log("Socket connected: " + socket.id)
     initRouter(socket);
   })
 }
 
 export function create(params){
+
+  let g = new Game({
+    roomId: 1,
+    playerIds: [1,2,3,4,5]
+  });
+  g.save();
+  console.log(g);
   const promise = new Promise( (resolve, reject) => {
     const app = require('http').createServer()
     initApp(app, params, () =>{
