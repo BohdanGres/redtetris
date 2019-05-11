@@ -41,8 +41,8 @@ const randomTable = () => {
     }
     board.push(tmpY);
   }
-  console.log(board);
-  console.log(x, y);
+  // console.log(board);
+  // console.log(x, y);
   return {
     array: board,
     width: y,

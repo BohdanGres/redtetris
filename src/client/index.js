@@ -53,11 +53,31 @@ socket.emit('action', { type: 'init'} );
 // }
 
 
+
+const arrowPres = (e) => {
+  console.log(121);
+  /*  if (e.keyCode == '38') {
+      // up arrow
+    }
+    else if (e.keyCode == '40') {
+      // down arrow
+    }
+    else if (e.keyCode == '37') {
+      // left arrow
+    }
+    else if (e.keyCode == '39') {
+      // right arrow
+    }*/
+  console.log(e.keyCode());
+};
+
+
+
 const app = document.getElementById('tetris');
 
 ReactDom.render((
   <Provider store={store}>
-    <App/>
+    <App onKeyDown={arrowPres}/>
   </Provider>
 ), app)
 
@@ -65,12 +85,13 @@ ReactDom.render((
 
 
 
-setInterval(() => {socket.emit('action', { type: 'init'} )}, 1000)
+setInterval(() => {socket.emit('action', { type: 'init'} )}, 10000)
 
 /*
 
 const f = () {}
 socket.emit('action', { type: 'init'} );
 */
+
 
 

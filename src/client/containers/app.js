@@ -3,6 +3,7 @@ import { connect } from 'react-redux'
 
 import  BoardMain  from './../components/BoardMain'
 
+
 const App = ({message}) => {
 
  // console.log(message);

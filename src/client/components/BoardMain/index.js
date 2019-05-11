@@ -16,7 +16,7 @@ const buildRow = (height, width, color) => {
 // buildRow()
 
 const BoardMain = ({width, height, array}) => {
-  console.log(width, height);
+  // console.log(width, height);
   return (
     <div className="mainBoard">
       {buildRow(height,width, array)}
