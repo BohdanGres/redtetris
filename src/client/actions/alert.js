@@ -1,9 +1,10 @@
-export const ALERT_POP = 'ALERT_POP'
 
-export const alert = (message) => {
+export const ELRT = 'INIT_TYPE'
+
+export const init = (body) => {
   return {
-    type: ALERT_POP,
-    message
+    type: INIT_TYPE,
+    body
   }
 }
 

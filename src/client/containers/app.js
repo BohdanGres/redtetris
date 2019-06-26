@@ -1,23 +1,15 @@
 import React from 'react'
-import { connect } from 'react-redux'
 
-import  BoardMain  from './../components/BoardMain'
+import BoardMain from './../components/BoardMain'
 
+const miniRouter = (state) => {
 
-const App = ({message}) => {
+};
 
- // console.log(message);
+const App = () => {
   return (
     <BoardMain/>
   )
-}
+};
 
 export default App;
-/*const mapStateToProps = (state) => {
-  return {
-    message: state.message
-  }
-}
-export default connect(mapStateToProps, null)(App)*/
-
-
