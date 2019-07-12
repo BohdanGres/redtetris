@@ -19,8 +19,8 @@ export default function initRouter(socket) {
       case 'init':
         socket.emit('action', {
           type: 'init',
-          body: randomTable()
-        })
+          body: [],
+        });
         break;
       case 'setName':
         socket.to(socket.id).emit('action', {type: 'ping'});
@@ -36,16 +36,15 @@ export default function initRouter(socket) {
 
     makeServiceRunner(service.Session.Create,
       { password, name },
-      {name, socket}
+      { name, socketId: socket.id }
       )({ res, req });
   });
 
   socket.on('userCheck', async ({password, name }) => {
     const res = new Res({ connectionType: 'singleRequest', socket });
-
     makeServiceRunner(service.Session.Update,
       { password, name },
-      {name, socket}
+      { name, socketId: socket.id }
     )({ res, req });
   });
 
@@ -70,7 +69,7 @@ export default function initRouter(socket) {
 
     makeServiceRunner(service.Session.Show,
       { userName, userUuid },
-      {userUuid, socket}
+      {userUuid, socketId: socket.id }
     )({ res, req });
   });
 
@@ -82,39 +81,23 @@ export default function initRouter(socket) {
       await contextBuilder({ userUuid: playerId })
     )({ res, req });
   });
+
+  socket.on('disconnect',async () => {
+    const res = new Res({ connectionType: 'noRequest', socket });
+
+    makeServiceRunner(service.Session.Delete,
+      { socketId: socket.id },
+      {}
+    )({ res, req });
+  });
+
+  socket.on('gameStart', async ({ roomId, playerId }) => {
+    const res = new Res({ connectionType: 'roomRequest', socket });
+
+    makeServiceRunner(service.Game.Create,
+      { roomId },
+      await contextBuilder({ userUuid: playerId })
+    )({ res, req });
+  });
+
 }
-
-
-
-const randomTable = () => {
-
-  const y = config_be.bordParam.width;
-  const x = config_be.bordParam.height;
-  let board = [];
-  for (let i =0; i < x; i++) {
-    let tmpY = [];
-    for (let j = 0; j < y; j++) {
-      tmpY.push(getRandomInt(5));
-    }
-    board.push(tmpY);
-  }
-
-  return {
-    array: board,
-    width: y,
-    height:x
-  };
-
-};
-
-
-const generate = (n) => {
-  const ar = [];
-  for (let i = 0; i < n; i++) {
-    ar.push(getRandomInt(3))
-  }
-  return ar;
-};
-
-
-const getRandomInt = (max) => Math.floor(Math.random() * Math.floor(max));

@@ -7,10 +7,12 @@ export default class Res {
     this.socket = socket
   }
   send(data) {
-    if (this.connectionType === 'singleRequest')  {
+    if (this.connectionType === 'singleRequest') {
       this.singleRequest(data);
     } else if (this.connectionType === 'allRequest') {
       Res.allRequest(data);
+    } else if (this.connectionType === 'roomRequest') {
+      Res.roomRequest(data);
     }
   }
 
@@ -19,12 +21,18 @@ export default class Res {
       this.socket.emit('SERVER_ERROR', {...data});
     }
   }
+
   singleRequest(data) {
-    console.log('SINGLE REQUEST');
+    console.log('SINGLE REQUEST', this.socket.id);
     this.socket.emit('action', { ...data });
   }
 
   static allRequest(data) {
     socket.io.emit('action', { ...data });
+  }
+
+  static roomRequest(data) {
+    console.log("ROOM REQUEST");
+    socket.io.to(data.gameId).emit('action', { ...data });
   }
 }

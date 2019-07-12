@@ -16,6 +16,7 @@ export default class Create extends Base {
         name,
         playerId: uuidv4(),
         password,
+        socketId: this.context.socketId,
       });
 
       return {
@@ -33,6 +34,8 @@ export default class Create extends Base {
       throw error;
     }
 
+    user.socketId = this.context.socketId;
+    user.save();
     return {
       Status: 1,
       type: 'userCreate',

@@ -23,7 +23,8 @@ export default class Update extends Base {
       error.field = 'User';
       throw error;
     }
-
+    user.socketId = this.context.socketId;
+    user.save();
     return {
       Status: 1,
       type: 'userCreate',

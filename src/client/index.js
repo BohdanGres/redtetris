@@ -10,19 +10,19 @@ import store from './utils/store';
 import Popup from './components/Popup';
 import ErrorPopup from './components/ErrorPopup';
 import { getUserState } from './utils/cookie';
+import eventInit from './utils/eventListener';
 
-socket.emit('action', { type: 'init'} );
-socket.emit('roomList', {} );
-socket.emit('initSession', getUserState());
+// socket.emit('action', { type: 'init'} );
+// socket.emit('roomList', {} );
+// socket.emit('initSession', getUserState());
 
-const arrowPres = (e) => {
-};
+eventInit();
 
 const app = document.getElementById('tetris');
 
 ReactDom.render((
   <Provider store={store}>
-    <Router onKeyPress={arrowPres}/>
+    <Router/>
     <Popup/>
     <ErrorPopup/>
   </Provider>

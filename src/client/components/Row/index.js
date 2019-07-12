@@ -1,33 +1,21 @@
 import React from 'react'
 import configUi from '../../../../etc/config-ui';
 
+const createCell = (row) => {
 
-const test = (e) => {
-  alert(123);
+  const cells = row.map((cel, i) => {
+    return (<div key={i} className="cell" style={{backgroundColor: configUi.colorValue[cel]}}></div>);
+  });
+  return  cells;
 };
 
-const createCell = (amount, color = {}) => {
 
-  const realColor = Object.values(color);
-  const cells = [];
-  for (let i = 0; i < amount; i++) {
-    // console.log('???? = ', realColor[1]);
-    cells.push(<div key={i} className="cell" onClick={test} style={{backgroundColor: configUi.colorValue[realColor[i]]}}></div>);
-  }
-  return  cells;
-}
+export const Row = ({ row }) => {
 
-createCell(configUi.COL);
-
-export const Row = ({ width, color }) => {
-  // console.log('ROW ROW ROW', color);
-
- // // console.log([k,i])
- //  console.log('im row data = ' + k + color);
   return (
     <div className="row">
-      {createCell(width, color)}
+      {createCell(row)}
     </div>
       )
-}
+};
 

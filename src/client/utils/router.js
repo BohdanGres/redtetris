@@ -4,7 +4,6 @@ import GameTable from './../containers/gameTable'
 import Home from './../containers/home';
 import {connect, Provider} from "react-redux";
 import React from 'react';
-
 import Header from './../components/Header';
 
 const getPage = ({ page }) => {

@@ -1,14 +1,33 @@
 import openSocket from 'socket.io-client';
 import { init } from '../actions/init';
 import { error } from '../actions/error';
-import { setCookie } from './cookie';
+import {getUserState, setCookie} from './cookie';
 import { auth } from '../actions/auth';
 import { roomListUpdate } from "../actions/roomListUpdate";
 import { roomCreate } from "../actions/roomCreate";
 import { sessionInit } from "../actions/sessionInit";
+import {gameStart, x} from '../actions/gameAction';
 
 import store from './store';
 const socket = openSocket('http://localhost:3004');
+
+socket.on('connection', () => {
+  console.log(new Date());
+  socket.emit('roomList', {} );
+
+});
+
+
+socket.on('reconnect', () => {
+  console.log(new Date(), 'RECONECT 111');
+  socket.emit('initSession', getUserState());
+});
+
+socket.on('connect', () => {
+  console.log(new Date(), 'RECONECT  2222');
+  socket.emit('initSession', getUserState());
+  socket.emit('roomList', {} );
+});
 
 socket.on('action', (data) => {
   console.log('from socket nodejs',  data);
@@ -32,6 +51,13 @@ socket.on('action', (data) => {
       break;
     case 'sessionInit':
       store.dispatch(sessionInit(data.roomPending));
+      break;
+    case 'gameStart':
+      store.dispatch(gameStart(data.gameData));
+      break;
+    case 'goDown':
+      store.dispatch(x(1));
+      break;
   }
 });
 

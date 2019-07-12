@@ -16,10 +16,12 @@ class Socket {
   }
 
   emit(event, data, to) {
+    console.log('RESPONSE');
     if (to) {
-      this.io.to(to).emit("event_name",data);
+      console.log('RESPONSE TO ROOM');
+      this.io.to(to).emit(event, data);
     } else {
-      this.io.emit("event_name",data);
+      this.io.emit(event, data);
     }
 
   }
