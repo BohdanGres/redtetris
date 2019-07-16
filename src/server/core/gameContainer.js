@@ -8,13 +8,15 @@ class GameContainr {
   }
 
   push(game) {
-    console.log('PUSH');
+    console.log('GAME PUSHED');
     const startedGame = new GameRunner(game, this.gameList.length);
     startedGame.runGame();
-    console.log('game started');
     this.gameList.push(startedGame);
   }
 
+  getGame(id) {
+    return this.gameList.find(GameRunner => GameRunner.game.roomId);
+  }
   getGameList() {
 
     return this.gameList;
@@ -24,21 +26,6 @@ class GameContainr {
     this.gameList.filter(runningGame => !runningGame.game);
   }
 
-  // static async initContainer() {
-  //   let container = null;
-  //   try {
-  //     const gameList = await Game.find({
-  //       where: {
-  //         status: 'IN GAME',
-  //       },
-  //     });
-  //     container = new this(gameList.map(game => new GameRunner(game)));
-  //   } catch (e) {
-  //     console.log(e);
-  //     container = new this([]);
-  //   }
-  //   return container;
-  // }
 }
 
 const container = new GameContainr();

@@ -1,0 +1,266 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <title>Code coverage report for client/reducers/alert.js</title>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="../../prettify.css" />
+    <link rel="stylesheet" href="../../base.css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style type='text/css'>
+        .coverage-summary .sorter {
+            background-image: url(../../sort-arrow-sprite.png);
+        }
+    </style>
+</head>
+<body>
+<div class='wrapper'>
+  <div class='pad1'>
+    <h1>
+      <a href="../../index.html">all files</a> / <a href="index.html">client/reducers/</a> alert.js
+    </h1>
+    <div class='clearfix'>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">0% </span>
+        <span class="quiet">Statements</span>
+        <span class='fraction'>0/5</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">0% </span>
+        <span class="quiet">Branches</span>
+        <span class='fraction'>0/33</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">0% </span>
+        <span class="quiet">Functions</span>
+        <span class='fraction'>0/1</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">0% </span>
+        <span class="quiet">Lines</span>
+        <span class='fraction'>0/5</span>
+      </div>
+    </div>
+  </div>
+  <div class='status-line low'></div>
+<pre><table class="coverage">
+<tr><td class="line-count quiet">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68</td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import config from './../../../etc/config-ui';
+&nbsp;
+const reducer = <span class="fstat-no" title="function not covered" >(state = {}, action) =&gt; {</span>
+&nbsp;
+  switch(action.type) {
+    case 'INIT_TYPE':
+      return { ...state, ...action.body };
+    case 'CHANGE_WIDTH':
+      return { ...state, width: action.width };
+    case 'SET_NAME':
+      return { ...state, userName: action.name };
+    case 'ERROR':
+      return  { ...state, error: action.error };
+    case 'USER_CREATE':
+      return { ...state, ...action.userData };
+    case 'AUTH':
+      return { ...state, ...action.data };
+    case 'CLEAR_STORE':
+      return { ...action.initialStore, userUuid: '', userName: '', userType: 'NEW_USER', loginPopup: true};
+    case 'PAGE_CHANGE':
+      return { ...state, page: action.page };
+    case 'ROOM_LIST_UPDATE':
+<span class="cstat-no" title="statement not covered" >      if (state.roomPending) {</span>
+        const roomPendingIndex = action.roomList.findIndex(room =&gt; room.roomId === state.roomPending.roomId)
+<span class="cstat-no" title="statement not covered" >        if (roomPendingIndex !== -1) {</span>
+          return { ...state, roomList: action.roomList, roomPending: action.roomList[roomPendingIndex] }
+        }
+      }
+      return {...state, roomList: action.roomList };
+    case 'ROOM_CREATE':
+      return { ...state, roomPending: action.room };
+    case 'SESSION_INIT':
+      return { ...state, roomPending: action.roomPending };
+    case 'GAME_START':
+      return { ...state, roomPending: null, ...action.gameData, page: 'game' };
+    case 'Y_ARROW':
+      const newStateY = { ...state };
+&nbsp;
+      const tableStateY = newStateY.tables[newStateY.userUuid];
+      const lengthY = tableStateY.current.cord.y + tableStateY.current.figure.figure[0].length + action.pos;
+&nbsp;
+<span class="cstat-no" title="statement not covered" >      if (lengthY &gt; config.COL || tableStateY.current.cord.y + action.pos &lt; 0</span>
+        || tableStateY.current.cord.y + action.pos &lt; 0 ) {
+        return newStateY;
+      }
+&nbsp;
+    newStateY.tables[newStateY.userUuid].current.cord.y += action.pos;
+    newStateY.i = newStateY.i + 1;
+      return newStateY;
+  case 'X_ARROW':
+<span class="cstat-no" title="statement not covered" >    const newStateX = { ...state };c</span>onsole.log('444uuu TYTYTYTYTYT???');
+    const tableState = newStateX.tables[newStateX.userUuid];
+    const lengthX = tableState.current.cord.x + tableState.current.figure.figure.length + action.pos;
+    console.log('lengthX', lengthX, 'config.ROW', config.ROW);
+<span class="cstat-no" title="statement not covered" >    if (lengthX &gt; config.ROW || tableState.current.cord.x + action.pos &lt; 0</span>
+      || tableState.current.cord.y + action.pos &lt; 0 ) {
+      return newStateX;
+    }
+      newStateX.tables[newStateX.userUuid].current.cord.x += action.pos;
+      newStateX.i = newStateX.i + 1;
+      return newStateX;
+    default:
+      return state
+  }
+};
+&nbsp;
+export default reducer
+&nbsp;</pre></td></tr>
+</table></pre>
+<div class='push'></div><!-- for sticky footer -->
+</div><!-- /wrapper -->
+<div class='footer quiet pad2 space-top1 center small'>
+  Code coverage
+  generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Sun Jul 14 2019 20:21:06 GMT+0300 (EEST)
+</div>
+</div>
+<script src="../../prettify.js"></script>
+<script>
+window.onload = function () {
+        if (typeof prettyPrint === 'function') {
+            prettyPrint();
+        }
+};
+</script>
+<script src="../../sorter.js"></script>
+</body>
+</html>

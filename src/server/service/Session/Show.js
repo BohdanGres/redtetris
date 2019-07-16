@@ -25,8 +25,6 @@ export default class Show extends Base {
       createdBy: userUuid,
     });
 
-    console.log(game);
-
     const runningGame = await Game.findOne({
       playerIds: user.playerId
     });
@@ -46,7 +44,7 @@ export default class Show extends Base {
     return {
       Status: 1,
       type: 'sessionInit',
-      roomPending: game,
+      roomPending: game.getValue(),
     }
   }
 }

@@ -48,13 +48,13 @@ export default class Create extends Base {
     console.log('==============================================')
     const cont = await container;
 
-    cont.push(startedGame);
+    cont.push(startedGame.getValue());
 
     return {
       Status: 1,
       type: 'gameStart',
       gameId: game.roomId,
-      gameData: game,
+      gameData: game.getValue(),
     };
   }
 }

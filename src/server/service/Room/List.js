@@ -10,7 +10,7 @@ export default class List extends Base {
     return {
       Status: 1,
       type: 'listRoomUpdate',
-      roomList: list,
+      roomList: list.map(g => g.getValue()),
     };
   }
 }

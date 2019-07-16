@@ -24,3 +24,12 @@ export const x = (pos) => {
     pos
   }
 };
+
+export const GAME_UPDATE = 'GAME_UPDATE';
+
+export const gameUpdate = (gameData) => {
+  return {
+    type: GAME_UPDATE,
+    gameData,
+  }
+};

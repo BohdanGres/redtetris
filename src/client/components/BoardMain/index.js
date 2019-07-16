@@ -15,6 +15,7 @@ const buildRow = (table) => {
 // buildRow()
 
 const mapTable = ({ table, current }) => {
+  if (!current.figure) return table;
   const figure = current.figure.figure;
   const cord = current.cord;
   const newTable = table.map(tr => [...tr]);

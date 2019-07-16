@@ -35,7 +35,7 @@ const initialState = {
   roomList: [],
 };
 
-export  { initialState };
+export { initialState };
 
 const composeEnhancers = process.env.NODE_ENV !== 'production' ?
   window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose: // eslint-disable-line

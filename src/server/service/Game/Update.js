@@ -8,9 +8,9 @@ import uuidv4 from 'uuid/v4';
 import { eventEmitter } from '../../router/EventRouter';
 
 export default class Update extends Base {
-  validateRules = ['roomId'];
+  validateRules = ['x', 'y', 'figure', 'roomId'];
 
-  async execute({ roomId }) {
+  async execute({ x, y, figure, roomId }) {console.log('RUUUM UPDATE');
     const { user } = this.context;
     if (!user) {
       this.throwError({ field: 'User', message: 'Yoops, you need login first' });
@@ -24,33 +24,45 @@ export default class Update extends Base {
       this.throwError({ field: 'Game', message: 'Yoops, such game already exis' });
     }
 
-    const players = await Player.find({
-      playerId: game.playerIds,
+
+
+    const userTable = game.tables[user.playerId];
+    // console.log(userTable.table);
+
+    const color = Math.floor(Math.random() * 4);
+    console.log('TESTETS', figure);
+    figure.forEach( (row, i) => {
+      row.forEach((col, j) => {
+        userTable.table[x + i][y + j] = col ? color : 0;
+      });
     });
+    userTable.step += 1;
 
-    const ids = [];
+    const current = game.getCurent(userTable.step);
 
-    players.map(player => {
-      const conection = socket.io.sockets.connected[player.socketId];
-      if (conection) {
-        conection.join(game.roomId);
-        ids.push(player.playerId);
-      } else {
-        console.log('NO CONECTION');
-      }
-      player.status = 'IN GAME';
-      player.save();
-    });
+    userTable.current = {
+      figure: current,
+      cord: {
+        x: 0,
+        y: 0,
+      },
+    };
+    // console.log(JSON.stringify(userTable, null, 4));
 
-    await game.InitGame(ids);
-    console.log('GAME START');
+    const newTable = { ...game.tables };
+    newTable[user.playerId] = userTable;
+
+
+    game.tables = JSON.parse(JSON.stringify(newTable)) ;
+    await game.save();
+    // console.log(game.tables[user.playerId]);
+
+    console.log('GAME Update');
     return {
       Status: 1,
-      type: 'gameStart',
+      type: 'gameUpdate',
       gameId: game.roomId,
-      gameData: {
-        ...game,
-      },
+      gameData: game.getValue(),
     };
   }
 }

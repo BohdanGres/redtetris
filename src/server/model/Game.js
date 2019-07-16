@@ -14,6 +14,19 @@ const gameSchema = new mongoose.Schema({
 
 const getRandomInt = (max) => Math.floor(Math.random() * Math.floor(max));
 
+gameSchema.methods.getValue = function() {
+  return {
+    roomId: this.roomId,
+    roomName: this.roomName,
+    createdBy: this.createdBy,
+    playerIds: this.playerIds,
+    playerNames: this.playerNames,
+    status: this.status,
+    tables: this.tables,
+    pieces: this.pieces,
+  };
+}
+
 gameSchema.methods.InitGame = async function(playerIds) {
   function shuffleArray(arr) {
     const array = [...arr];
@@ -69,6 +82,15 @@ gameSchema.methods.InitGame = async function(playerIds) {
 
 gameSchema.methods.runGame = async function() {
 
+};
+
+gameSchema.methods.getCurent = function(i) {
+  if (i >= this.pieces.length) {
+    const j = getRandomInt(this.pieces.length - 1);
+    this.pieces.push({...this.pieces[j]});
+  }
+
+  return this.pieces[i];
 };
 
 const Game = mongoose.model('Game', gameSchema);

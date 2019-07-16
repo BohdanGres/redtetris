@@ -6,7 +6,7 @@ import { auth } from '../actions/auth';
 import { roomListUpdate } from "../actions/roomListUpdate";
 import { roomCreate } from "../actions/roomCreate";
 import { sessionInit } from "../actions/sessionInit";
-import {gameStart, x} from '../actions/gameAction';
+import {gameStart, x, gameUpdate} from '../actions/gameAction';
 
 import store from './store';
 const socket = openSocket('http://localhost:3004');
@@ -54,6 +54,9 @@ socket.on('action', (data) => {
       break;
     case 'gameStart':
       store.dispatch(gameStart(data.gameData));
+      break;
+    case 'gameUpdate':
+      store.dispatch(gameUpdate(data.gameData));
       break;
     case 'goDown':
       store.dispatch(x(1));

@@ -6,6 +6,7 @@ import { makeServiceRunner } from './../core/serviceRuner'
 import Req from './../core/request';
 import Res from './../core/respons';
 import contextBuilder from '../utils/contextBuilder'
+import container from './../core/gameContainer'
 
 export default function initRouter(socket) {
   const req = new Req(socket);
@@ -98,6 +99,20 @@ export default function initRouter(socket) {
       { roomId },
       await contextBuilder({ userUuid: playerId })
     )({ res, req });
+  });
+  socket.on('setFigure', async ({ x, y, figure, playerId, roomId }) => {
+    const res = new Res({ connectionType: 'roomRequest', socket });
+    const game = container.getGame(roomId);
+    if (!game) {
+      return;
+    }
+
+    const step = makeServiceRunner(service.Game.Update,
+      { x, y, figure, roomId },
+      await contextBuilder({ userUuid: playerId })
+    );
+    game.push(step.bind(step, ({ res, req })));
+
   });
 
 }

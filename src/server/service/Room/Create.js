@@ -36,7 +36,7 @@ export default class Create extends Base {
     return {
       Status: 1,
       type: 'roomCreate',
-      game: newGame,
+      game: newGame.getValue(),
     };
   }
 }
