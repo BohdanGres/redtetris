@@ -1,6 +1,9 @@
 *~
 *.swp
 *.swo
+.idea
 log
+error-log.log
 tmp
+npm-debug.log
 node_modules
