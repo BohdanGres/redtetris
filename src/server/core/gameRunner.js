@@ -23,7 +23,7 @@ export default class GameRunner {
   runGame() {
 
     if (this.status) {
-      this.fd = setInterval(this.createRunner(this.game.roomId), 500);
+      this.fd = setInterval(this.createRunner(this.game.roomId), 5000);
     }
   }
 

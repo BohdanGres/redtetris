@@ -57,6 +57,7 @@ const reducer = (state = {}, action) => {
     newStateY.i = newStateY.i + 1;
       return newStateY;
   case 'X_ARROW':
+    console.log('TYT ???????');
     let newStateX = JSON.parse(JSON.stringify(state));
     // return xHandler(newStateX, action);
     let tableState = newStateX.tables[newStateX.userUuid];
@@ -67,31 +68,31 @@ const reducer = (state = {}, action) => {
 
     let figure = tableState.current.figure.figure;
 
-    let flag = false;
-    figure[figure.length - 1].forEach((cell, i) => {
-
-      if ((cell > 0 && tableState.table[x + figure.length -1][y + i] > 0) || lengthX > config.ROW) {
-        console.log('!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! DAAAAAA');
-        console.log({
-          tst: x,
-          tst2: figure.length,
-          tst3: y,
-          x: tableState.table[x + figure.length -1][y + i],
-          y:lengthX
-        });
-        flag = true;
-      }
-    });
-    if (flag) {
-      socket.emit('setFigure', {
-        x,
-        y,
-        figure,
-        playerId: getCookie('uuid'),
-        roomId: newStateX.roomId
-      });
-      return { ...newStateX };
-    }
+    // let flag = false;
+    // figure[figure.length - 1].forEach((cell, i) => {
+    //
+    //   if ((cell > 0 && tableState.table[x + figure.length -1][y + i] > 0) || lengthX > config.ROW) {
+    //     console.log('!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! DAAAAAA');
+    //     console.log({
+    //       tst: x,
+    //       tst2: figure.length,
+    //       tst3: y,
+    //       x: tableState.table[x + figure.length -1][y + i],
+    //       y:lengthX
+    //     });
+    //     flag = true;
+    //   }
+    // });
+    // if (flag) {
+    //   socket.emit('setFigure', {
+    //     x,
+    //     y,
+    //     figure,
+    //     playerId: getCookie('uuid'),
+    //     roomId: newStateX.roomId
+    //   });
+    //   return { ...newStateX };
+    // }
 
     if (lengthX > config.ROW || tableState.current.cord.x + action.pos < 0
       || tableState.current.cord.y + action.pos < 0 ) {

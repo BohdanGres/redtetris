@@ -29,7 +29,7 @@ export default class Update extends Base {
     const userTable = game.tables[user.playerId];
     // console.log(userTable.table);
 
-    const color = Math.floor(Math.random() * 4);
+    const color = Math.floor(Math.random() * 4) + 1;
     console.log('TESTETS', figure);
     figure.forEach( (row, i) => {
       row.forEach((col, j) => {
