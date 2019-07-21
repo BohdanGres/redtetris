@@ -1,9 +1,9 @@
 
-export const ELRT = 'INIT_TYPE'
+export const ALERT_POP = 'INIT_TYPE'
 
-export const init = (body) => {
+export const alert = (body) => {
   return {
-    type: INIT_TYPE,
+    type: ALERT_POP,
     body
   }
 }
