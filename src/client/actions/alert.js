@@ -1,5 +1,5 @@
 
-export const ALERT_POP = 'INIT_TYPE'
+export const ALERT_POP = 'ALERT_POP'
 
 export const alert = (body) => {
   return {

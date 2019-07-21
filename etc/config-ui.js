@@ -12,7 +12,8 @@ const configUi = {
     '2': 'blue',
     '3': 'green',
     '4': 'orange',
-    '5': 'darkcyan'
+    '5': 'darkcyan',
+    '6': 'black',
   },
 };
 

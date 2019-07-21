@@ -56,24 +56,27 @@ gameSchema.methods.InitGame = async function(playerIds) {
 
   this.pieces = shuffleArray(await Piece.getAll());
 
+  const current = await getCurent(0, getRandomInt(4) + 1);
+
+  const newTable = {};
+  const board = generateTable();
   for ( let id of playerIds) {
-    this.tables[id] = {
-      current: null,
-      step: 0,
-      table: generateTable(),
-    };
-
-    const current = await getCurent(this.tables[id].step);
-
-    this.tables[id].current = {
-      figure: current.getPiece(),
-      cord: {
-        x: 0,
-        y: 0,
+    console.log(id);
+    console.log(this.tables);
+    newTable[id] = {
+      current: {
+        figure: current.getPiece(),
+        cord: {
+          x: 0,
+          y: 0,
+        },
       },
+      step: 0,
+      table: board,
     };
   }
 
+  this.tables = newTable;
   this.status = 'IN GAME';
   await this.save();
 
@@ -84,12 +87,12 @@ gameSchema.methods.runGame = async function() {
 
 };
 
-gameSchema.methods.getCurent = function(i) {
+gameSchema.methods.getCurent = function(i, color) {
   if (i >= this.pieces.length) {
     const j = getRandomInt(this.pieces.length - 1);
     this.pieces.push({...this.pieces[j]});
   }
-
+  this.pieces[i].figure = this.pieces[i].figure.map(t => t.map(c => c ? this.pieces[i].color : c));
   return this.pieces[i];
 };
 

@@ -6,8 +6,12 @@ import { getCookie } from './../utils/cookie';
 const reducer = (state = {}, action) => {
 
   switch(action.type) {
+    case 'server/ping':
+      return { ...state };
     case 'INIT_TYPE':
       return { ...state, ...action.body };
+    case 'ALERT_POP':
+      return { ...state, ...action}
     case 'CHANGE_WIDTH':
       return { ...state, width: action.width };
     case 'SET_NAME':

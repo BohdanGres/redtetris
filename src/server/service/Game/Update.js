@@ -1,16 +1,17 @@
 import Base from  './../Base'
 import Game from './../../model/Game';
-import Player from './../../model/Player';
-
-import socket from './../../core/socket';
-
-import uuidv4 from 'uuid/v4';
-import { eventEmitter } from '../../router/EventRouter';
+// import Player from './../../model/Player';
+//
+// import socket from './../../core/socket';
+//
+// import uuidv4 from 'uuid/v4';
+// import { eventEmitter } from '../../router/EventRouter';
+const getRandomInt = (max) => Math.floor(Math.random() * Math.floor(max));
 
 export default class Update extends Base {
   validateRules = ['x', 'y', 'figure', 'roomId'];
 
-  async execute({ x, y, figure, roomId }) {console.log('RUUUM UPDATE');
+  async execute({ x, y, figure, roomId }) {
     const { user } = this.context;
     if (!user) {
       this.throwError({ field: 'User', message: 'Yoops, you need login first' });
@@ -20,6 +21,8 @@ export default class Update extends Base {
       roomId,
     });
 
+    console.log({game : game.tables, user});
+
     if (!game) {
       this.throwError({ field: 'Game', message: 'Yoops, such game already exis' });
     }
@@ -27,17 +30,15 @@ export default class Update extends Base {
 
 
     const userTable = game.tables[user.playerId];
-    // console.log(userTable.table);
 
-    const color = Math.floor(Math.random() * 4) + 1;
-    console.log('TESTETS', figure);
+    // const color = Math.floor(Math.random() * 4) + 1;
     let isEnd = false;
     figure.forEach( (row, i) => {
       row.forEach((col, j) => {
         if (userTable.table[x + i][y + j] && col) {
           isEnd = true;
         }
-        userTable.table[x + i][y + j] = col ? color : userTable.table[x + i][y + j];
+        userTable.table[x + i][y + j] = col ? col : userTable.table[x + i][y + j];
       });
     });
     userTable.step += 1;
@@ -45,7 +46,7 @@ export default class Update extends Base {
     const current = game.getCurent(userTable.step);
 
     let newTable = userTable.table.map((tr, i, tablr) => {
-      const da = tr.every(e => !!e);
+      const da = tr.every(e => e > 0 && e !== 6);
       if (da) {
         return false
       }
@@ -74,7 +75,6 @@ export default class Update extends Base {
     await game.save();
     // console.log(game.tables[user.playerId]);
 
-    console.log('GAME Update');
     return {
       Status: 1,
       type: 'gameUpdate',

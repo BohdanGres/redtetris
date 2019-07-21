@@ -23,7 +23,7 @@ export default class GameRunner {
   runGame() {
 
     if (this.status) {
-      this.fd = setInterval(this.createRunner(this.game.roomId), 500000000);
+      this.fd = setInterval(this.createRunner(this.game.roomId), 800);
     }
   }
 
@@ -34,7 +34,6 @@ export default class GameRunner {
   }
 
   async execQueue() {
-    console.log(this);
     if (this.serviceQueue.length) {
       this.serviceQueue[0]();
       this.serviceQueue.shift();

@@ -7,8 +7,15 @@ const MESSAGE = "message"
 
 chai.should()
 
+
+
+
+
 describe('Fake redux test', function(){
   it('alert it', function(done){
+
+    console.log('sdfsdf', alert);
+    console.log('TEST',rootReducer);
     const initialState = {}
     const store =  configureStore(rootReducer, null, initialState, {
       ALERT_POP: ({dispatch, getState}) =>  {

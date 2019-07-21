@@ -44,6 +44,7 @@ export default class Create extends Base {
       player.save();
     });
 
+
     const startedGame = await game.InitGame(ids);
     console.log('==============================================')
     const cont = await container;

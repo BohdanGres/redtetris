@@ -39,7 +39,6 @@ export function create(params) {
       socket.init(app);
       console.log(new Date());
       const stop = (cb) => {
-        console.log('GOOD BYE');
         app.close( () => {
           app.unref()
         })
