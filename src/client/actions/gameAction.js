@@ -33,3 +33,23 @@ export const gameUpdate = (gameData) => {
     gameData,
   }
 };
+
+export const ROTATE = 'ROTATE';
+
+export const rotate = (matrix) => {
+  const theta = matrix.reduce((omega,alpha) => omega.concat(alpha));
+  const delta = [];
+  for(let x = 0; x < matrix[0].length; x++) {
+    let i = x;
+    delta[x] = [];
+    for (let j = i; j  < theta.length; ) {
+      delta[x].push(theta[j]);
+      j += matrix[0].length;
+    }
+    delta[x].reverse();
+  }
+  return {
+    type: ROTATE,
+    mat: delta,
+  }
+};

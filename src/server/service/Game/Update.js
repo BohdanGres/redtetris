@@ -31,15 +31,32 @@ export default class Update extends Base {
 
     const color = Math.floor(Math.random() * 4) + 1;
     console.log('TESTETS', figure);
+    let isEnd = false;
     figure.forEach( (row, i) => {
       row.forEach((col, j) => {
-        userTable.table[x + i][y + j] = col ? color : 0;
+        if (userTable.table[x + i][y + j] && col) {
+          isEnd = true;
+        }
+        userTable.table[x + i][y + j] = col ? color : userTable.table[x + i][y + j];
       });
     });
     userTable.step += 1;
 
     const current = game.getCurent(userTable.step);
 
+    let newTable = userTable.table.map((tr, i, tablr) => {
+      const da = tr.every(e => !!e);
+      if (da) {
+        return false
+      }
+      return tr;
+    });
+
+    newTable = newTable.filter(tr => tr);
+
+    for (let i = newTable.length; i < 20; i++) newTable.unshift([0, 0, 0, 0, 0, 0, 0, 0, 0, 0]);
+    userTable.table = newTable;
+    userTable.isEnd = isEnd;
     userTable.current = {
       figure: current,
       cord: {
@@ -49,11 +66,11 @@ export default class Update extends Base {
     };
     // console.log(JSON.stringify(userTable, null, 4));
 
-    const newTable = { ...game.tables };
-    newTable[user.playerId] = userTable;
+    const allTable = { ...game.tables };
+    allTable[user.playerId] = userTable;
 
 
-    game.tables = JSON.parse(JSON.stringify(newTable)) ;
+    game.tables = JSON.parse(JSON.stringify(allTable)) ;
     await game.save();
     // console.log(game.tables[user.playerId]);
 

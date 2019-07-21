@@ -44,7 +44,7 @@ export default class Show extends Base {
     return {
       Status: 1,
       type: 'sessionInit',
-      roomPending: game.getValue(),
+      roomPending: game ? game.getValue() : null,
     }
   }
 }

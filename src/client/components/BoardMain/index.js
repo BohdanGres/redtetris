@@ -22,7 +22,7 @@ const mapTable = ({ table, current }) => {
 
   figure.map((tr, i, arr) => {
     tr.map((th, j, ar) => {
-      newTable[i + cord.x][j + cord.y] = th;
+      newTable[i + cord.x][j + cord.y] = th ? th : newTable[i + cord.x][j + cord.y];
      });
   });
   return newTable;
