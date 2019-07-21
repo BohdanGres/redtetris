@@ -101,6 +101,11 @@ const reducer = (state = {}, action) => {
       newStateX.tables[newStateX.userUuid].current.cord.x += action.pos;
       newStateX.i = newStateX.i + 1;
       return newStateX;
+    case 'ROTATE':
+      let rotateState = { ...state };
+      rotateState.tables[rotateState.userUuid].current.figure.figure = action.mat
+      rotateState.i++;
+      return rotateState;
     default:
       return state
   }
