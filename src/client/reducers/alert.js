@@ -39,9 +39,14 @@ const reducer = (state = {}, action) => {
     case 'SESSION_INIT':
       return { ...state, roomPending: action.roomPending };
     case 'GAME_START':
-      return { ...state, roomPending: null, ...action.gameData, page: 'game' };
+      return { ...state, roomPending: null, ...action.gameData, page: 'game', blockDown: false };
     case 'GAME_UPDATE':
-      return { ...state, roomPending: null, ...action.gameData, page: 'game' };
+      if (action.gameData.updatedBy !== state.userUuid) {
+        action.gameData.tables[state.userUuid] = state.tables[state.userUuid];
+      } else if (action.gameData.updatedBy === state.userUuid && action.gameData.tables[state.userUuid].isEnd) {
+        return { ...state, roomPending: null, ...action.gameData, page: 'game', blockDown: true };
+      }
+      return { ...state, roomPending: null, ...action.gameData, page: 'game', blockDown: false };
   case 'Y_ARROW':
       let newStateY = JSON.parse(JSON.stringify(state));// { ...state };
 
@@ -61,7 +66,6 @@ const reducer = (state = {}, action) => {
     newStateY.i = newStateY.i + 1;
       return newStateY;
   case 'X_ARROW':
-    console.log('TYT ???????');
     let newStateX = JSON.parse(JSON.stringify(state));
     // return xHandler(newStateX, action);
     let tableState = newStateX.tables[newStateX.userUuid];
@@ -107,9 +111,21 @@ const reducer = (state = {}, action) => {
       return newStateX;
     case 'ROTATE':
       let rotateState = { ...state };
-      rotateState.tables[rotateState.userUuid].current.figure.figure = action.mat
+      let d = rotateState.tables[rotateState.userUuid].current.cord.y;
+      if (d + action.mat.length > 9) {
+        rotateState.tables[rotateState.userUuid].current.cord.y -= 11 - (action.mat.length + d);
+      }
+      rotateState.tables[rotateState.userUuid].current.figure.figure = action.mat;
+
       rotateState.i++;
       return rotateState;
+    case 'BLOCK_DOWN':
+      return { ...state, blockDown: true };
+    case 'BLOCK_ROW':
+      if (action.gameData.updatedBy !== action.gameData.updatedBy) {
+        action.gameData.tables[state.userUuid] = state.tables[state.userUuid];
+      }
+      return { ...state, roomPending: null, ...action.gameData, page: 'game', blockDown: false };
     default:
       return state
   }

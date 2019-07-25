@@ -14,6 +14,8 @@ const logerror = debug('tetris:error'),
 // mongoose.Promise = Promise;
 mongoose.connect(`mongodb://localhost/mongo42`);
 
+iniEventRouter();
+
 const initApp = (app, params, cb) => {
   const { host, port } = params;
 
@@ -27,7 +29,6 @@ const initApp = (app, params, cb) => {
 
 const initEngine = io => {
   io.on('connection', initRouter);
-  iniEventRouter();
 };
 
 export function create(params) {
@@ -37,7 +38,6 @@ export function create(params) {
 
       const io = new require('socket.io')(app);
       socket.init(app);
-      console.log(new Date());
       const stop = (cb) => {
         app.close( () => {
           app.unref()

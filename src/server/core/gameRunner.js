@@ -1,12 +1,27 @@
 import socket from './socket'
 
+const execQueue = async (game) => {
+  if (game.inQueue && game.serviceQueue.length) {
+    console.log('START RUN SERVISE ', new Date());
+    await game.serviceQueue[0]();
+    console.log('STOP RUN SERVISE ', new Date());
+    game.serviceQueue.shift();
+    if (!game.serviceQueue.length) {
+      game.inQueue = false;
+    }
+  }
+
+  if (game.serviceQueue.length) {
+    setTimeout(execQueue.bind({}, game), 0);
+  }
+}
 
 export default class GameRunner {
   constructor(game) {
     this.game = game;
     this.status = true;
     this.serviceQueue = [];
-    this.inQueue = false;
+    this.da = true;
   }
 
   // gameTick(roomId) {
@@ -21,10 +36,8 @@ export default class GameRunner {
   }
 
   runGame() {
-
-    if (this.status) {
-      this.fd = setInterval(this.createRunner(this.game.roomId), 800);
-    }
+    this.fd = setInterval(this.createRunner(this.game.roomId), 1000);
+    this.queueFd = setInterval(this.execQueue.bind(this), 50);
   }
 
   stopGame() {
@@ -34,19 +47,15 @@ export default class GameRunner {
   }
 
   async execQueue() {
-    if (this.serviceQueue.length) {
-      this.serviceQueue[0]();
+    if (this.da && this.serviceQueue.length) {
+      this.da = false;
+      await this.serviceQueue[0]();
       this.serviceQueue.shift();
-    }
-
-    if (this.serviceQueue.length) {
-      setTimeout(this.execQueue.bind(this), 0);
+      this.da = true;
     }
   }
 
   async push(service) {
     this.serviceQueue.push(service);
-    setTimeout(this.execQueue.bind(this), 0);
-
   }
 }

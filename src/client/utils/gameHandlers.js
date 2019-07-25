@@ -1,7 +1,6 @@
 import config from '../../../etc/config-ui';
 
 export const handleCollision = (y, x, table, figure) => {
-  console.log({y, x, table, figure});
   const setFigure = (table, figure) => {
     figure.forEach((row, i) => {
       (col, j) => {

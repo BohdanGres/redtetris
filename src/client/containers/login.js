@@ -10,13 +10,11 @@ let name = '';
 
 const handleSubmit = (e) => {
 e.preventDefault();
-  console.log(name);
   socket.emit('action', { type: 'setName', body: { name } } );
 };
 
 const handleChange = (val, e) => {
     name = val;
-    console.log('name', name);
 };
 
 const Login = () => {

@@ -1,7 +1,6 @@
 import RunError from './runError'
 import log from './../utils/logger';
 
-
 export function makeServiceRunner(
   actionClass, /* istanbul ignore next */
   params,
@@ -34,15 +33,12 @@ async function runService(service, { context = {}, params = {} }) {
 
 function ppResult(req, res, promise) {
   const result =  promise;
-  console.log('NORMAL RES');
   res.send(result);
 }
 
-async function returnError(req, res, error) {
+function returnError(req, res, error) {
   log.info(error);
-  console.log('ERROR RES');
   if (error.field) {
-    console.log('CUSTOM ERROR');
     res.send({
       type: 'errorPopup',
       Status: 0,

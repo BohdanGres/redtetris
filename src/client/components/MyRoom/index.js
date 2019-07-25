@@ -20,7 +20,6 @@ const MyRoom = (room) => {
   const handler = () => {
     socket.emit('gameStart', { roomId: room.roomId, playerId: getCookie('uuid') });
   };
-  console.log('room', room);
   return (
     <div>
       <Typography variant="h4" >

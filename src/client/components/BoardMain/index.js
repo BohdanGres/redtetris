@@ -106,7 +106,6 @@ const mapTable = ({ table, current }) => {
 
 
 const otherBoard = (boards) => {
-  console.log(boards)
  return  boards.map(board => {
    return (<div className="board">
      {buildRow(board)}

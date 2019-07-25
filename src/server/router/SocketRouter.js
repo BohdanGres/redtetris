@@ -101,6 +101,12 @@ export default function initRouter(socket) {
     )({ res, req });
   });
   socket.on('setFigure', async ({ x, y, figure, playerId, roomId }) => {
+
+    console.log('====================================');
+    console.log('SET FIGURE PRISHLO');
+    console.log('====================================')
+
+
     const res = new Res({ connectionType: 'roomRequest', socket });
     const game = container.getGame(roomId);
     if (!game) {
