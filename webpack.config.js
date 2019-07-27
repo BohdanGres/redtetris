@@ -7,14 +7,13 @@ module.exports = {
     path: path.join(__dirname, 'build'),
     filename: 'bundle.js'
   },
-
   module: {
-    loaders: [{
+    rules: [{
       test: /\.js$/,
       exclude: /node_modules/,
       loader: 'babel',
       query:{
-        presets: ["es2015", "react", "stage-0"]
+        presets: ['@babel/preset-env']
       }
     }]
   }
