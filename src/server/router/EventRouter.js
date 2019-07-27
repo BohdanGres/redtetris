@@ -1,24 +1,46 @@
 import { makeServiceRunner } from './../core/serviceRuner'
-import service from "../service";
+import service from '../service';
 import Res from './../core/respons';
+import Req from './../core/request';
+import container from '../core/gameContainer';
+import contextBuilder from '../utils/contextBuilder';
 
 const EventEmitter = require('events');
 
-export const eventEmitter = new EventEmitter();
+const eventEmitter = new EventEmitter();
 
 export function iniEventRouter() {
-  eventEmitter.on('serverEvent', ({ event, data }) => {
+  eventEmitter.on('serverEvent', async ({ event, data }) => {
 
     switch (event) {
-    case 'roomListUpdate':
-      const res = new Res({ connectionType: 'allRequest', socket:{} });
+    case 'roomListUpdate': {
+      const res = new Res({connectionType: 'allRequest', socket: {}});
       makeServiceRunner(service.Room.List,
-          {},
-          {}
-        )({ res, req: {} });
+        {},
+        {}
+      )({res, req: {}});
+      break;
+    }
+    case 'blockRow': {
+      const res = new Res({connectionType: 'roomRequest', socket: {} });
+      const req = new Req({id: null});
+      const game = container.getGame(data.roomId);
+      if (!game) {
+        return;
+      }
+
+      const step = makeServiceRunner(service.Game.Row.Update,
+        { ...data },
+        {}
+      );
+      game.push(step.bind(step, ({res, req})));
+    }
       break;
     default :
       break;
     }
   });
-};
+}
+
+export default eventEmitter;
+

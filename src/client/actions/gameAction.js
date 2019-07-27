@@ -34,6 +34,14 @@ export const gameUpdate = (gameData) => {
   }
 };
 
+export const BLOCK_DOWN = 'BLOCK_DOWN';
+
+export const blockDown = () => {
+  return {
+    type: BLOCK_DOWN,
+  }
+};
+
 export const ROTATE = 'ROTATE';
 
 export const rotate = (matrix) => {
@@ -51,5 +59,14 @@ export const rotate = (matrix) => {
   return {
     type: ROTATE,
     mat: delta,
+  }
+};
+
+export const BLOCK_ROW = 'BLOCK_ROW';
+
+export const blockRow = (gameData) => {
+  return {
+    type: BLOCK_ROW,
+    gameData,
   }
 };

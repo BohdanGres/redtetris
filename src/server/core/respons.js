@@ -23,7 +23,6 @@ export default class Res {
   }
 
   singleRequest(data) {
-    console.log('SINGLE REQUEST', this.socket.id);
     this.socket.emit('action', { ...data });
   }
 
@@ -32,7 +31,6 @@ export default class Res {
   }
 
   static roomRequest(data) {
-    console.log("ROOM REQUEST");
     socket.io.to(data.gameId).emit('action', { ...data });
   }
 }

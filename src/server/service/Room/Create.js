@@ -1,7 +1,7 @@
 import Base from  './../Base'
 import Game from './../../model/Game';
 import uuidv4 from 'uuid/v4';
-import { eventEmitter } from '../../router/EventRouter';
+import eventEmitter from '../../router/EventRouter';
 
 export default class Create extends Base {
   validateRules = ['name'];

@@ -10,6 +10,8 @@ const gameSchema = new mongoose.Schema({
   status: { type: String, default: 'PENDING' },
   tables: { type: Object, default: {} },
   pieces: { type: Array, default: [] },
+}, {
+  versionKey: false // You should be aware of the outcome after set to false
 });
 
 const getRandomInt = (max) => Math.floor(Math.random() * Math.floor(max));
@@ -61,14 +63,12 @@ gameSchema.methods.InitGame = async function(playerIds) {
   const newTable = {};
   const board = generateTable();
   for ( let id of playerIds) {
-    console.log(id);
-    console.log(this.tables);
     newTable[id] = {
       current: {
         figure: current.getPiece(),
         cord: {
           x: 0,
-          y: 0,
+          y: 4,
         },
       },
       step: 0,

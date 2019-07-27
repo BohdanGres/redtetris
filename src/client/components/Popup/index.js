@@ -41,7 +41,7 @@ const  Popup = ({ userUuid, userName, loginPopup, userType }) => {
 
   const done = (userType === 'OLD_USER' || userType === 'NEW_USER');
 
-  const getPopup = (userType) => { console.log('USER_TYPE ==== ', userType);
+  const getPopup = (userType) => {
     if (userType == 'OLD_USER') {
       return AcountConfirm({ handleClose, inputValue, handleInputChange, passValue, handlePassChange, userName });
     } else if (userType == 'NEW_USER') {

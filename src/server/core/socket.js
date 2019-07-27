@@ -16,9 +16,7 @@ class Socket {
   }
 
   emit(event, data, to) {
-    console.log('RESPONSE');
     if (to) {
-      console.log('RESPONSE TO ROOM');
       this.io.to(to).emit(event, data);
     } else {
       this.io.emit(event, data);

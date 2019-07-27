@@ -6,31 +6,28 @@ import { auth } from '../actions/auth';
 import { roomListUpdate } from "../actions/roomListUpdate";
 import { roomCreate } from "../actions/roomCreate";
 import { sessionInit } from "../actions/sessionInit";
-import {gameStart, x, gameUpdate} from '../actions/gameAction';
+import {gameStart, x, gameUpdate, blockRow} from '../actions/gameAction';
 
 import store from './store';
 const socket = openSocket('http://localhost:3004');
 
 socket.on('connection', () => {
-  console.log(new Date());
   socket.emit('roomList', {} );
 
 });
 
 
 socket.on('reconnect', () => {
-  console.log(new Date(), 'RECONECT 111');
   socket.emit('initSession', getUserState());
 });
 
 socket.on('connect', () => {
-  console.log(new Date(), 'RECONECT  2222');
   socket.emit('initSession', getUserState());
   socket.emit('roomList', {} );
 });
 
 socket.on('action', (data) => {
-  console.log('from socket nodejs',  data);
+  console.log('socet data', data)
   switch (data.type) {
     case 'init':
       store.dispatch(init(data.body));
@@ -59,13 +56,16 @@ socket.on('action', (data) => {
       store.dispatch(gameUpdate(data.gameData));
       break;
     case 'goDown':
-      store.dispatch(x(1));
+      window.dispatchEvent(new KeyboardEvent('keydown',{'key':'ArrowDown'}));
+      // store.dispatch(x(1));
+      break;
+    case 'gameUpdateRow':
+      store.dispatch(blockRow(data.gameData));
       break;
   }
 });
 
 socket.on('RESPONS', data => {
-  console.log('GET RESPONSE', data)
 });
 
 export default socket;

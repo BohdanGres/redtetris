@@ -15,7 +15,6 @@ const GameRow = (room, i, status) => {
     if (status) {
       return;
     }
-    console.log({ name, id });
     socket.emit('subscribeOnRoom', { roomId: id, playerId: getCookie('uuid') });
   };
 

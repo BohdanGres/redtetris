@@ -22,7 +22,6 @@ gameSchema.statics.getAll = async function () {
     const a = await this.insertMany(array);
     all.push(...a);
   }
-console.log(all);
   return all;
 };
 
@@ -31,6 +30,14 @@ gameSchema.methods.getPiece = function () {
   const fig = tbl.map(t => t.map( b => b ? this.color : b));
   return {
     figure : fig
+  };
+};
+
+gameSchema.methods.getValue = function() {
+  return {
+    pieceId: this.pieceId,
+    figure: this.figure,
+    color: this.color,
   };
 }
 

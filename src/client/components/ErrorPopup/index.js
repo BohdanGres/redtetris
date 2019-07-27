@@ -18,7 +18,6 @@ const  ErrorPopup = ({ error }) => {
   const handleClose  = ()  => {
     store.dispatch(Error(null));
   };
-  console.log(error);
   if (!!error == false) {
     return (<div/>);
   }
