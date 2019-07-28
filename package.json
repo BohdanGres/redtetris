@@ -58,6 +58,7 @@
     "mocha": "^2.5.3",
     "mockup-server": "^0.8.2",
     "nyc": "^6.4.4",
+    "pm2": "^3.5.1",
     "webpack": "^1.13.0",
     "webpack-dev-middleware": "^1.6.1",
     "webpack-dev-server": "^1.14.1",

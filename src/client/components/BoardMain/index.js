@@ -80,7 +80,7 @@ const useStyles = makeStyles(theme => ({
   },
 }));
 
-const buildRow = (table) => {
+const buildRow = ({ table }) => {
   const row = table.map((row, i) => {
     return (<Row key={i}  row={row}/>)
   });
@@ -105,41 +105,43 @@ const mapTable = ({ table, current }) => {
 };
 
 
-const otherBoard = (boards) => {
- return  boards.map(board => {
-   return (<div className="board">
-     {buildRow(board)}
-   </div>)
+const   otherBoard = (tables = []) => {
+  console.log('??????',tables);
+ return  tables.map(board => {
+   console.log('board', board);
+   return (
+     <div>
+       <div className={`board ${board.isEnd ? 'looser' : '' }`}>
+        {buildRow({ table: board.table })}
+       </div>
+     </div>)
  });
 };
 
 
 const BoardMain = ({ width, height, array, gameData, tables, userUuid }) => {
   const classes = useStyles();
-
-  // console.log(width, height);
-  const newTable = mapTable(tables[userUuid]);
+  const newTable = { table: mapTable(tables[userUuid]), isEnd: tables[userUuid].isEnd };
   const otherTable = [];
   Object.keys(tables).forEach(tblId => {
     if (tblId !== userUuid) {
-      otherTable.push(tables[tblId].table);
+      otherTable.push({ table: tables[tblId].table, isEnd: tables[tblId].isEnd });
     }
-  })
-
+  });
   const leftTable = otherTable.splice(0,2);
   return (
     <div>
       <Grid container>
           <Grid item md={3}>
-            {otherBoard(leftTable)}
+            {(leftTable && leftTable.length) ? otherBoard(leftTable) : ''}
           </Grid>
           <Grid item md={6}>
-            <div className="mainBoard">
+            <div className={`mainBoard ${newTable.isEnd ? 'looser' : ''}`}>
               {buildRow(newTable)}
             </div>
           </Grid>
           <Grid item md={3}>
-            {otherBoard(otherTable)}
+            {(otherTable && otherTable.length) ? otherBoard(otherTable): ''}
           </Grid>
       </Grid>
     </div>

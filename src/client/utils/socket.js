@@ -7,12 +7,15 @@ import { roomListUpdate } from "../actions/roomListUpdate";
 import { roomCreate } from "../actions/roomCreate";
 import { sessionInit } from "../actions/sessionInit";
 import {gameStart, x, gameUpdate, blockRow} from '../actions/gameAction';
+import { users } from '../actions/user';
 
-import store from './store';
+import store, {initialState} from './store';
+import {clearStore} from "../actions/clearStore";
 const socket = openSocket('http://localhost:3004');
 
 socket.on('connection', () => {
   socket.emit('roomList', {} );
+  socket.emit('userList', {});
 
 });
 
@@ -24,6 +27,7 @@ socket.on('reconnect', () => {
 socket.on('connect', () => {
   socket.emit('initSession', getUserState());
   socket.emit('roomList', {} );
+  socket.emit('userList', {});
 });
 
 socket.on('action', (data) => {
@@ -61,6 +65,15 @@ socket.on('action', (data) => {
       break;
     case 'gameUpdateRow':
       store.dispatch(blockRow(data.gameData));
+      break;
+    case 'listUser':
+      store.dispatch(users(data.userList));
+      break;
+    case 'roomSubscribe':
+      store.dispatch(roomCreate(data.game));
+      break;
+    case 'reset':
+      store.dispatch(clearStore(initialState));
       break;
   }
 });

@@ -6,3 +6,12 @@ export const roomCreate = (room) => {
     room,
   }
 };
+
+export const ROOM_SUBSCRIBE = 'ROOM_SUBSCRIBE';
+
+export const roomSubscribe = (room) => {
+  return {
+    type: ROOM_SUBSCRIBE,
+    room,
+  }
+};

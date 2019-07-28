@@ -15,7 +15,7 @@ class GameContainr {
   }
 
   getGame(id) {
-    return this.gameList.find(GameRunner => GameRunner.game.roomId);
+    return this.gameList.find(GameRunner => ( GameRunner.game && GameRunner.game.roomId));
   }
   getGameList() {
 

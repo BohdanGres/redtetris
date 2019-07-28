@@ -5,6 +5,7 @@ import Home from './../containers/home';
 import {connect, Provider} from "react-redux";
 import React from 'react';
 import Header from './../components/Header';
+import Users from './../containers/users'
 
 const getPage = ({ page }) => {
 
@@ -17,6 +18,8 @@ const getPage = ({ page }) => {
       break;
     case 'game':
       return (<App/>);
+    case 'user_scores':
+      return(<Users/>);
     default:
       return (<GameTable/>);
       break;

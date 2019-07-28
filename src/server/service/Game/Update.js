@@ -17,7 +17,6 @@ export default class Update extends Base {
     const game = await Game.findOne({
       roomId,
     });
-    console.log('GAME END FIND IN UPDATE', JSON.stringify(game));
 
     if (!game) {
       this.throwError({ field: 'Game', message: 'Yoops, such game already exis' });
@@ -41,6 +40,7 @@ export default class Update extends Base {
       game.tables[user.playerId].isEnd = true;
       game.markModified('tables');
       await game.save();
+      eventEmitter.emit('serverEvent', { event: 'looseGame', data: { roomId: game.roomId } });
       return {
         Status: 1,
         type: 'gameUpdate',

@@ -36,6 +36,21 @@ export function iniEventRouter() {
       game.push(step.bind(step, ({res, req})));
     }
       break;
+      case 'looseGame': {
+        const res = new Res({connectionType: 'roomRequest', socket: {} });
+        const req = new Req({id: null});
+        const game = container.getGame(data.roomId);
+        if (!game) {
+          return;
+        }
+
+        const step = makeServiceRunner(service.Game.Delete,
+          { ...data },
+          {}
+        );
+        game.push(step.bind(step, ({res, req})));
+      }
+      break;
     default :
       break;
     }

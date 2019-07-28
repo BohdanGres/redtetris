@@ -30,10 +30,8 @@ export default class Update extends Base {
     }
 
     game.tables = JSON.parse(JSON.stringify({ ...tables })) ;
-    console.log('GAME AT ROW SAVE START ',JSON.stringify(game));
     game.markModified('tables');
     await game.save();
-    console.log('GAME AT ROW SAVE END ', JSON.stringify(game));
 
     return {
       Status: 1,

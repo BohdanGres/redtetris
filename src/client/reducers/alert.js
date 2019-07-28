@@ -36,6 +36,8 @@ const reducer = (state = {}, action) => {
       return {...state, roomList: action.roomList };
     case 'ROOM_CREATE':
       return { ...state, roomPending: action.room };
+    case 'ROOM_SUBSCRIBE':
+      return { ...state, roomPending: action.room };
     case 'SESSION_INIT':
       return { ...state, roomPending: action.roomPending };
     case 'GAME_START':
@@ -56,7 +58,6 @@ const reducer = (state = {}, action) => {
       let newY = tableStateY.current.cord.y + action.pos;
       let newX = tableStateY.current.cord.x;
 
-      // if ()getCurent
       if (lengthY > config.COL || tableStateY.current.cord.y + action.pos < 0
         || tableStateY.current.cord.y + action.pos < 0 ) {
         return newStateY;
@@ -67,7 +68,6 @@ const reducer = (state = {}, action) => {
       return newStateY;
   case 'X_ARROW':
     let newStateX = JSON.parse(JSON.stringify(state));
-    // return xHandler(newStateX, action);
     let tableState = newStateX.tables[newStateX.userUuid];
     let lengthX = tableState.current.cord.x + tableState.current.figure.figure.length + action.pos;
 
@@ -75,32 +75,6 @@ const reducer = (state = {}, action) => {
     let y = tableState.current.cord.y
 
     let figure = tableState.current.figure.figure;
-
-    // let flag = false;
-    // figure[figure.length - 1].forEach((cell, i) => {
-    //
-    //   if ((cell > 0 && tableState.table[x + figure.length -1][y + i] > 0) || lengthX > config.ROW) {
-    //     console.log('!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! DAAAAAA');
-    //     console.log({
-    //       tst: x,
-    //       tst2: figure.length,
-    //       tst3: y,
-    //       x: tableState.table[x + figure.length -1][y + i],
-    //       y:lengthX
-    //     });
-    //     flag = true;
-    //   }
-    // });
-    // if (flag) {
-    //   socket.emit('setFigure', {
-    //     x,
-    //     y,
-    //     figure,
-    //     playerId: getCookie('uuid'),
-    //     roomId: newStateX.roomId
-    //   });
-    //   return { ...newStateX };
-    // }
 
     if (lengthX > config.ROW || tableState.current.cord.x + action.pos < 0
       || tableState.current.cord.y + action.pos < 0 ) {
@@ -126,6 +100,8 @@ const reducer = (state = {}, action) => {
         action.gameData.tables[state.userUuid] = state.tables[state.userUuid];
       }
       return { ...state, roomPending: null, ...action.gameData, page: 'game', blockDown: false };
+    case 'USER_LIST':
+      return { ...state, users: action.users }
     default:
       return state
   }

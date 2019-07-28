@@ -34,6 +34,7 @@ const initialState = {
   roomPending: null,
   roomList: [],
   blockDown: false,
+  users: []
 };
 
 export { initialState };

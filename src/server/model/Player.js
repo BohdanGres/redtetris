@@ -5,6 +5,7 @@ const gameSchema = new mongoose.Schema({
   socketId: { type: String },
   name: { type: String },
   status: { type: String },
+  score: { type: Number, default: 0 },
   password: { type: String },
 });
 

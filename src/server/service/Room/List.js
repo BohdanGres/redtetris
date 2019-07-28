@@ -6,7 +6,7 @@ export default class List extends Base {
   validateRules = [];
 
   async execute() {
-    const list = await Game.find({});
+    const list = await Game.find({ status : 'pending' });
     return {
       Status: 1,
       type: 'listRoomUpdate',

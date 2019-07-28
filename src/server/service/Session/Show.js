@@ -22,7 +22,7 @@ export default class Show extends Base {
     }
 
     const game = await Game.findOne({
-      createdBy: userUuid,
+      playerIds: userUuid,
     });
 
     const runningGame = await Game.findOne({

@@ -20,7 +20,7 @@ const HeaderNavBar = () => {
 
   };
   const handleClick3 = (e) => {
-    store.dispatch(pageChange('game'));
+    store.dispatch(pageChange('user_scores'));
 
   };
   return (
@@ -37,8 +37,8 @@ const HeaderNavBar = () => {
           </Button>
         </ListItemText>
         <ListItemText inset>
-          <Button variant="outlined" value="game" onClick={handleClick3}>
-            Game
+          <Button variant="outlined" value="user_scores" onClick={handleClick3}>
+            Users
           </Button>
         </ListItemText>
       </ListItem >

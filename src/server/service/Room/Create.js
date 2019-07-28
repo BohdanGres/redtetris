@@ -25,6 +25,7 @@ export default class Create extends Base {
       playerIds : [user.playerId],
       playerNames : [user.name],
       createdBy : user.playerId,
+      status :   'pending',
     });
 
     if (!newGame) {

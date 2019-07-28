@@ -6,8 +6,6 @@ import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemText from '@material-ui/core/ListItemText';
 
-import { getCookie } from './../../utils/cookie';
-
 const playerList = (name, i) => (
   <ListItem key={i}>
     <ListItemText
@@ -16,10 +14,21 @@ const playerList = (name, i) => (
     />
   </ListItem>);
 
-const MyRoom = (room) => {
+const MyRoom = (room, userUuid) => {
+  console.log('userUuid', userUuid);
   const handler = () => {
-    socket.emit('gameStart', { roomId: room.roomId, playerId: getCookie('uuid') });
+    socket.emit('gameStart', { roomId: room.roomId, playerId: userUuid });
   };
+
+  const handleLeft = () => {
+    socket.emit('leftRoom', { roomId: room.roomId, playerId: userUuid });
+  };
+
+  const handleDelete = () => {
+    socket.emit('deleteRoom', { roomId: room.roomId, playerId: userUuid });
+  };
+
+  const yourRoom = room.createdBy == userUuid;
   return (
     <div>
       <Typography variant="h4" >
@@ -28,9 +37,16 @@ const MyRoom = (room) => {
       <List>
         { room.playerNames.map((name, i) => { return playerList(name, i) })}
       </List>
-      <Button variant="outlined" color="secondary" onClick={handler}>
-        START!!!
+      <Button variant="outlined" color="secondary" onClick={yourRoom ? handler : handleLeft}>
+        { yourRoom? 'START!!!' : 'left room'}
       </Button>
+      {yourRoom ?
+        (
+          <Button variant="outlined" color="secondary" onClick={handleDelete}>
+            Delete(
+         </Button>
+        )
+        : ''}
     </div>
   )
 };

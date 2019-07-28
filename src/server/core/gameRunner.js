@@ -24,11 +24,6 @@ export default class GameRunner {
     this.da = true;
   }
 
-  // gameTick(roomId) {
-  //   console.log(roomId);
-  //   socket.emit('testTick', { Status: 1 }, roomId);
-  // }
-
   createRunner(roomId) {
     return function gameTick() {
       socket.emit('action', { Status: 1, type: 'goDown' }, roomId);
@@ -42,6 +37,7 @@ export default class GameRunner {
 
   stopGame() {
     clearInterval(this.fd);
+    clearInterval(this.queueFd);
     this.game = null;
     this.status = false;
   }

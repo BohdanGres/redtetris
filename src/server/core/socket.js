@@ -23,6 +23,17 @@ class Socket {
     }
 
   }
+
+  clearRoom(name) {
+    this.io.of('/').in(name).clients((error, socketIds) => {
+      if (error) throw error;
+      socketIds.forEach(socketId => this.io.sockets.sockets[socketId].leave(name));
+    });
+  }
+
+  removePlayerFromRoom(id, name) {
+    this.io.sockets.sockets[id].leave(name)
+  }
 }
 
 const socket = new Socket();

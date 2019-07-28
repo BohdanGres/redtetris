@@ -39,7 +39,7 @@ const useStyles = makeStyles(theme => ({
 
 }));
 
-const GameTable = ({ roomPending, roomList }) => {
+const GameTable = ({ roomPending, roomList, userUuid }) => {
 
   const [spacing, setSpacing] = useState(2);
   const classes = useStyles();
@@ -60,7 +60,7 @@ const GameTable = ({ roomPending, roomList }) => {
         <Grid container justify="center" spacing={spacing}>
           <Grid key={1} item>
             <Paper className={classes.paper}>
-              {(!roomPending) ? (<Room/>) : (MyRoom(roomPending)) }
+              {(!roomPending) ? (<Room/>) : (MyRoom(roomPending, userUuid)) }
             </Paper>
           </Grid>
           <Grid key={2} item>
@@ -87,7 +87,8 @@ const GameTable = ({ roomPending, roomList }) => {
 const mapStateToProps = (state) => {
   return {
     roomPending: state.roomPending,
-    roomList: state.roomList
+    roomList: state.roomList,
+    userUuid : state.userUuid
   }
 };
 export default connect(mapStateToProps, null)(GameTable)
