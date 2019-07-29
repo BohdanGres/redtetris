@@ -1,4 +1,8 @@
+import '@babel/polyfill'
 import glob from 'glob'
+
+
+
 
 console.log(__dirname)
 const files = glob.sync("src/server#<{(||)}>#*.js")

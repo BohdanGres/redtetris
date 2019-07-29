@@ -1,7 +1,3 @@
-import RunError from './../core/runError';
-
-
-
 export default class Base {
   constructor(context) {
     this.context = context ? context : {};
