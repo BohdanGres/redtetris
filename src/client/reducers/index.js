@@ -25,7 +25,7 @@ const reducer = (state = {}, action) => {
     case 'CLEAR_STORE':
       return { ...action.initialStore, userUuid: '', userName: '', userType: 'NEW_USER', loginPopup: true};
     case 'CLEAR_STORE_SOFT':
-      return { ...action.initialStore};
+      return { ...action.initialStore, users: state.users};
     case 'PAGE_CHANGE':
       return { ...state, page: action.page };
     case 'ROOM_LIST_UPDATE':
@@ -109,7 +109,6 @@ const reducer = (state = {}, action) => {
     case 'USER_LIST':
       return { ...state, users: action.users };
     case 'GAME_END':
-      console.log('action.name', action.name);
       return { ...state, winerName: action.name };
     default:
       return state

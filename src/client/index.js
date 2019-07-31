@@ -8,12 +8,13 @@ import ErrorPopup from './components/ErrorPopup';
 import WinerPopup from './components/WinerPopup';
 
 import eventInit from './utils/eventListener';
-
+import parseUrl from './utils/urlParse';
 // socket.emit('action', { type: 'init'} );
 // socket.emit('roomList', {} );
 // socket.emit('initSession', getUserState());
 
 eventInit();
+parseUrl();
 
 const app = document.getElementById('tetris');
 

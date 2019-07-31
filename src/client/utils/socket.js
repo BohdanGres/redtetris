@@ -31,7 +31,6 @@ socket.on('connect', () => {
 });
 
 socket.on('action', (data) => {
-  console.log('socet data', data)
   switch (data.type) {
     case 'init':
       store.dispatch(init(data.body));
