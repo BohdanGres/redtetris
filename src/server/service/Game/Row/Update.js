@@ -18,18 +18,18 @@ export default class Update extends Base {
     const tables = game.tables;
 
     for (const user in tables) {
+      let blocked = 0;
+      tables[user].table.forEach(tr => {
+        blocked += tr.every(e => e === 6);
+      })
       if (user !== playerId) {
         for (let i = 0; i < blockedRoom; i++) {
-          let blocked = 0;
-          tables[user].table.forEach(tr => {
-            blocked += tr.every(e => e === 6);
-          })
           tables[user].table[19 - i - blocked] = [6, 6, 6, 6, 6, 6, 6, 6, 6, 6];
         }
       }
     }
 
-    game.tables = JSON.parse(JSON.stringify({ ...tables })) ;
+    game.tables = { ...tables };
     game.markModified('tables');
     await game.save();
 

@@ -70,3 +70,21 @@ export const blockRow = (gameData) => {
     gameData,
   }
 };
+
+export const BLOCK = 'BLOCK';
+
+export const block = () => {
+  return {
+    type: BLOCK
+  }
+};
+
+export const GAME_END = 'GAME_END';
+
+export const gameEnd = (data) => {
+  console.log(data);
+  return {
+    type: GAME_END,
+    name: data,
+  }
+};

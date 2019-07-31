@@ -18,9 +18,28 @@ export default class Delete extends Base {
       this.throwError({ field: 'Game', message: 'Yoops, such game already exis' });
     }
     const winers = [];
-
+    let l = 0;
     for ( let id in game.tables ) {
-      if (game.tables[id].isEnd) winers.push(id);
+      l++;
+      if (!game.tables[id].isEnd) winers.push(id);
+    }
+
+    if (l === 1) {
+
+      const gameManager = container.getGame(game.roomId);
+      gameManager.stopGame();
+      socket.sendToRoom(game.roomId, { type: 'gameWiner', name: 'Not you' });
+      socket.clearRoom(game.roomId)
+      container.clearContainer();
+      game.status = 'pending';
+      game.tables = {};
+      await game.save();
+      return {
+        Status: 1,
+        type: 'gameEnd',
+        gameId: game.roomId,
+        winer: user,
+      };
     }
 
     if (winers.length === 1) {
@@ -35,6 +54,7 @@ export default class Delete extends Base {
       await user.save();
       const gameManager = container.getGame(game.roomId);
       gameManager.stopGame();
+      socket.sendToRoom(game.roomId, { type: 'gameWiner', name: user.name });
       socket.clearRoom(game.roomId)
       container.clearContainer();
       game.status = 'pending';

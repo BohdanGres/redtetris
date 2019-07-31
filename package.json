@@ -11,7 +11,7 @@
     "@material-ui/icons": "^4.2.1",
     "mongoose": "^5.6.7",
     "react": "^16.8.6",
-    "react-dom": "^16.8.6",
+    "react-dom": "16.8.6",
     "react-redux": "^7.1.0",
     "redux": "^4.0.4",
     "redux-logger": "^3.0.6",
@@ -29,12 +29,18 @@
     "@babel/register": "^7.5.5",
     "babel-loader": "^8.0.6",
     "babel-watch": "^7.0.0",
-    "chai": "^4.2.0",
+    "chai": "^3.5.0",
+    "chai-equal-jsx": "^1.0.9",
+    "enzyme": "^3.10.0",
+    "enzyme-adapter-react-16": "^1.14.0",
     "glob": "^7.1.4",
     "jsdom": "15.1.1",
     "jsdom-global": "3.0.2",
     "mocha": "^6.2.0",
     "mocha-jsdom": "^2.0.0",
+    "nyc": "^14.1.1",
+    "react-addons-test-utils": "^15.6.2",
+    "react-test-renderer": "^16.8.6",
     "webpack": "^4.38.0",
     "webpack-cli": "^3.3.6",
     "webpack-dev-server": "^3.7.2"
@@ -42,11 +48,18 @@
   "scripts": {
     "client-dev": "webpack-dev-server --colors --hot --inline --host 0.0.0.0 --port 8080  ./src/client/index.js --output ./dist/client/bundle.js",
     "srv-dev": "DEBUG=tetris:* babel-watch -w src src/server/main.js",
-    "test": "mocha -r jsdom-global/register  -r @babel/register  --reporter spec"
+    "test": "mocha -r jsdom-global/register  -r @babel/register  --reporter spec",
+    "coverage": "NODE_ENV=test nyc --include src --all -r text -r lcov -r text  -r @babel/register  mocha "
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/BohdanGres/redtetris.git"
+  },
+  "nyc": {
+    "require": [
+      "@babel/register",
+      "jsdom-global/register"
+    ]
   },
   "author": "",
   "license": "ISC",

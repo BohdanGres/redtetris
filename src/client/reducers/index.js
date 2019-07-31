@@ -24,6 +24,8 @@ const reducer = (state = {}, action) => {
       return { ...state, ...action.data };
     case 'CLEAR_STORE':
       return { ...action.initialStore, userUuid: '', userName: '', userType: 'NEW_USER', loginPopup: true};
+    case 'CLEAR_STORE_SOFT':
+      return { ...action.initialStore};
     case 'PAGE_CHANGE':
       return { ...state, page: action.page };
     case 'ROOM_LIST_UPDATE':
@@ -39,7 +41,9 @@ const reducer = (state = {}, action) => {
     case 'ROOM_SUBSCRIBE':
       return { ...state, roomPending: action.room };
     case 'SESSION_INIT':
-      return { ...state, roomPending: action.roomPending };
+      let inGame = ( action.roomPending &&  action.roomPending.status === 'IN GAME') ?
+        { ...action.roomPending,  page: 'game' } : {};
+      return { ...state, roomPending: action.roomPending, ...inGame, winerName: null, blockDown: false };
     case 'GAME_START':
       return { ...state, roomPending: null, ...action.gameData, page: 'game', blockDown: false };
     case 'GAME_UPDATE':
@@ -100,8 +104,13 @@ const reducer = (state = {}, action) => {
         action.gameData.tables[state.userUuid] = state.tables[state.userUuid];
       }
       return { ...state, roomPending: null, ...action.gameData, page: 'game', blockDown: false };
+    case 'BLOCK':
+      return { ...state, blockDown: true };
     case 'USER_LIST':
-      return { ...state, users: action.users }
+      return { ...state, users: action.users };
+    case 'GAME_END':
+      console.log('action.name', action.name);
+      return { ...state, winerName: action.name };
     default:
       return state
   }

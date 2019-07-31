@@ -21,30 +21,23 @@ export default class Show extends Base {
       };
     }
 
-    const game = await Game.findOne({
-      playerIds: userUuid,
-    });
+    user.socketId = this.context.socketId;
+    await user.save();
 
     const runningGame = await Game.findOne({
       playerIds: user.playerId
     });
 
     if (runningGame) {
-      const confection = socket.io.sockets.connected[user.socketId];
-      if (confection) {
-        confection.join(runningGame.roomId);
+      const connection = socket.io.sockets.connected[user.socketId];
+      if (connection) {
+        connection.join(runningGame.roomId);
       }
     }
-
-
-    user.socketId = this.context.socketId;
-
-
-    await user.save();
     return {
       Status: 1,
       type: 'sessionInit',
-      roomPending: game ? game.getValue() : null,
+      roomPending: runningGame ? runningGame.getValue() : null,
     }
   }
 }

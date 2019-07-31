@@ -15,7 +15,6 @@ const playerList = (name, i) => (
   </ListItem>);
 
 const MyRoom = (room, userUuid) => {
-  console.log('userUuid', userUuid);
   const handler = () => {
     socket.emit('gameStart', { roomId: room.roomId, playerId: userUuid });
   };

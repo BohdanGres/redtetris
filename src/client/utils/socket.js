@@ -6,11 +6,11 @@ import { auth } from '../actions/auth';
 import { roomListUpdate } from "../actions/roomListUpdate";
 import { roomCreate } from "../actions/roomCreate";
 import { sessionInit } from "../actions/sessionInit";
-import {gameStart, x, gameUpdate, blockRow} from '../actions/gameAction';
+import {gameStart, x, gameUpdate, blockRow, gameEnd, block } from '../actions/gameAction';
 import { users } from '../actions/user';
 
-import store, {initialState} from './store';
-import {clearStore} from "../actions/clearStore";
+import store, {getInitialState} from './store';
+import { clearStore, clearStoreSoft} from "../actions/clearStore";
 const socket = openSocket('http://localhost:3004');
 
 socket.on('connection', () => {
@@ -64,6 +64,7 @@ socket.on('action', (data) => {
       // store.dispatch(x(1));
       break;
     case 'gameUpdateRow':
+      store.dispatch(block());
       store.dispatch(blockRow(data.gameData));
       break;
     case 'listUser':
@@ -72,8 +73,11 @@ socket.on('action', (data) => {
     case 'roomSubscribe':
       store.dispatch(roomCreate(data.game));
       break;
+    case 'gameWiner':
+      store.dispatch(gameEnd(data.name));
+      break;
     case 'reset':
-      store.dispatch(clearStore(initialState));
+      store.dispatch(clearStoreSoft(getInitialState()));
       break;
   }
 });

@@ -15,7 +15,6 @@ describe('test alert action', ()=>{
   const store = configureStore(reducer, null, defaultState, {
     ALERT_POP: ({dispatch, getState}) =>  {
       const state = getState();
-      console.log(state);
       state.message.should.equal(MESSAGE);
       done()
     }});

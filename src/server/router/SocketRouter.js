@@ -12,27 +12,6 @@ import Subscriber from "../service/Room/Subscriber";
 export default function initRouter(socket) {
   const req = new Req(socket);
   //const res = new Res({ connectionType: 'singleRequest', socket });
-  socket.on('action', (action) => {
-
-    switch (action.type) {
-      case 'ping':
-        socket.emit('action', {type: 'pong'});
-        break;
-      case 'init':
-        socket.emit('action', {
-          type: 'init',
-          body: [],
-        });
-        break;
-      case 'setName':
-        socket.to(socket.id).emit('action', {type: 'ping'});
-        break;
-      default :
-        socket.to(socket.id).emit('action', {type: 'ping'});
-        break;
-    }
-  });
-
   socket.on('userCreate', async ({password, name }) => {
     const res = new Res({ connectionType: 'singleRequest', socket });
 

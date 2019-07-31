@@ -29,7 +29,6 @@ const useStyles = makeStyles(theme => ({
 
 const Users = ( { users } ) => {
   const classes = useStyles();
-console.log('users',users);
   return (
     <Grid container className={classes.root} >
       <Grid xs={1}/>
