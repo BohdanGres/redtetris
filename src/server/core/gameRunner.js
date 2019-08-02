@@ -31,7 +31,7 @@ export default class GameRunner {
   }
 
   runGame() {
-    this.fd = setInterval(this.createRunner(this.game.roomId), 1000);
+    this.fd = setInterval(this.createRunner(this.game.roomId), 100000);
     this.queueFd = setInterval(this.execQueue.bind(this), 50);
   }
 

@@ -122,4 +122,24 @@ export default function initRouter(socket) {
     )({ res, req });
   });
 
+  socket.on('urlCreate', async ({ roomName, playerId }) => {
+    const res = new Res({ connectionType: 'singleRequest', socket });
+
+    const srv = new service.Room.UrlCreate.Create();
+    const { type, roomId } = await srv.run({ name: roomName, playerId });
+    if (type === 'CREATE') {
+      makeServiceRunner(service.Room.Create,
+        { name: roomName },
+        await contextBuilder({ userUuid: playerId })
+      )({ res, req });
+    } else if (type === 'SUBSCRIBE') {
+      makeServiceRunner(service.Room.Subscriber.Create,
+        { roomId, playerId },
+        await contextBuilder({ userUuid: playerId })
+      )({ res, req });
+    } else if (type === 'NO_USER') {
+
+    }
+  });
+
 }

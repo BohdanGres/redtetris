@@ -102,15 +102,33 @@ const mapTable = ({ table, current }) => {
   return newTable;
 };
 
+const mapOtherTabe = (table) => {
+  const board = [ ...table ];
+  const colored = [];
+  board.forEach((tr, i, table) => {
+      tr.forEach((cell, j, row) => {
+        let k = i;
+        if (cell > 0 && !colored.includes(j)) {
+          while (k < 20) {
+            table[k][j] = 1;
+            k++;
+          }
+          colored.push(j);
+        }
+      })
+    });
 
-const   otherBoard = (tables = []) => {
+  return board;
+};
+
+const otherBoard = (tables = []) => {
  return  tables.map(board => {
    return (
-     <div>
+     <Grid item md={6}>
        <div className={`board ${board.isEnd ? 'looser' : '' }`}>
-        {buildRow({ table: board.table })}
+        {buildRow({ table: mapOtherTabe(board.table) })}
        </div>
-     </div>)
+     </Grid>)
  });
 };
 
@@ -132,16 +150,20 @@ const BoardMain = ({ width, height, array, gameData, tables, userUuid }) => {
   return (
     <div>
       <Grid container>
-          <Grid item md={3}>
+          <Grid item md={4}>
+            <Grid container>
             {(leftTable && leftTable.length) ? otherBoard(leftTable) : ''}
+            </Grid>
           </Grid>
-          <Grid item md={6}>
+          <Grid item md={4}>
             <div className={`mainBoard ${newTable.isEnd ? 'looser' : ''}`}>
               {buildRow(newTable)}
             </div>
           </Grid>
-          <Grid item md={3}>
+          <Grid item md={4}>
+            <Grid container>
             {(otherTable && otherTable.length) ? otherBoard(otherTable): ''}
+            </Grid>
           </Grid>
       </Grid>
     </div>
