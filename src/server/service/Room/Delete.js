@@ -1,5 +1,6 @@
 import Base from  './../Base'
 import Game from './../../model/Game';
+import Player from './../../model/Player';
 import uuidv4 from 'uuid/v4';
 import eventEmitter  from '../../router/EventRouter';
 import socket from './../../core/socket';
@@ -21,9 +22,13 @@ export default class Update extends Base {
       this.throwError({ field: 'User', message: 'Yoops, WTF!' });
     }
 
-    const otherPlayer = game.playerIds.filter(id => id !== user.playerIds );
-    otherPlayer.forEach(id => {
-      socket.emit('reset', {}, id);
+    const otherPlayer = game.playerIds.filter(id => id !== user.playerId);
+    const users = await Player.find({
+      playerId: otherPlayer
+    });
+    console.log(users);
+    users.forEach(user => {
+      socket.emit('action', { type: 'reset' }, user.socketId);
     });
     await game.remove();
 

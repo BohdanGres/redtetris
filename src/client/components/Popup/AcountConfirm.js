@@ -10,7 +10,7 @@ import store from "../../utils/store";
 import socket from "../../utils/socket";
 
 import { clearStore } from './../../actions/clearStore';
-import { initialState } from './../../utils/store';
+import { getInitialState } from './../../utils/store';
 import {setCookie} from "../../utils/cookie";
 
 const AcountConfirm = ({ handleClose, inputValue, userName, handlePassChange, passValue }) => {
@@ -21,7 +21,7 @@ const AcountConfirm = ({ handleClose, inputValue, userName, handlePassChange, pa
   const handleCancel = () => {
     setCookie('uuid', '', 1);
     setCookie('userName', '', 10);
-    store.dispatch(clearStore(initialState));
+    store.dispatch(clearStore(getInitialState()));
   };
 
   return (

@@ -24,6 +24,15 @@ class Socket {
 
   }
 
+  sendToRoom(name, data) {
+    this.io.of('/').in(name).clients((error, socketIds) => {
+      if (error) throw error;
+
+      console.log('socketIds', socketIds);
+      socketIds.forEach(socketId => this.io.sockets.sockets[socketId].emit('action',  { ...data }));
+    });
+  }
+
   clearRoom(name) {
     this.io.of('/').in(name).clients((error, socketIds) => {
       if (error) throw error;

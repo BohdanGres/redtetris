@@ -39,7 +39,7 @@ const reducer = (state = {}, action) => {
     case 'ROOM_SUBSCRIBE':
       return { ...state, roomPending: action.room };
     case 'SESSION_INIT':
-      return { ...state, roomPending: action.roomPending };
+      return { ...state, roomPending: action.roomPending, winerName: null };
     case 'GAME_START':
       return { ...state, roomPending: null, ...action.gameData, page: 'game', blockDown: false };
     case 'GAME_UPDATE':
@@ -101,7 +101,9 @@ const reducer = (state = {}, action) => {
       }
       return { ...state, roomPending: null, ...action.gameData, page: 'game', blockDown: false };
     case 'USER_LIST':
-      return { ...state, users: action.users }
+      return { ...state, users: action.users };
+    case 'GAME_END':
+      return { ...state, winerName: action.name };
     default:
       return state
   }

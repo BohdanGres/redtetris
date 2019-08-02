@@ -1,7 +1,7 @@
 import cookie from "./cookie";
 import configUi from "../../../etc/config-ui";
 import {applyMiddleware, createStore, compose} from "redux";
-import reducer from "../reducers";
+import reducer from "../reducers/index";
 import thunk from "redux-thunk";
 import createLogger from "redux-logger";
 import thunkMiddleware                           from 'redux-thunk';
@@ -23,7 +23,7 @@ const geUserStatus = () => {
   return { userUuid, userName, userType: type, loginPopup };
 };
 
-const initialState = {
+export const getInitialState = () => ({
   ...geUserStatus(),
   array: [],
   page: 'home',
@@ -34,10 +34,10 @@ const initialState = {
   roomPending: null,
   roomList: [],
   blockDown: false,
-  users: []
-};
+  users: [],
+  winerName: null
+});
 
-export { initialState };
 
 const composeEnhancers = process.env.NODE_ENV !== 'production' ?
   window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose: // eslint-disable-line
@@ -46,7 +46,7 @@ const composeEnhancers = process.env.NODE_ENV !== 'production' ?
 
 const store = createStore(
   reducer,
-  initialState,
+  getInitialState(),
   composeEnhancers(
     applyMiddleware(thunkMiddleware)
   ));

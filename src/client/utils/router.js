@@ -7,9 +7,12 @@ import React from 'react';
 import Header from './../components/Header';
 import Users from './../containers/users'
 
-const getPage = ({ page }) => {
+const getPage = ({ page, roomPending }) => {
+  let thisPage = page;
 
-  switch (page) {
+  if (roomPending && roomPending.status === 'IN GAME') thisPage = 'game';
+  if (roomPending && roomPending.status === 'pending') thisPage = 'game_rooms';
+  switch (thisPage) {
     case 'home':
       return (<Home/>);
       break;
@@ -26,10 +29,10 @@ const getPage = ({ page }) => {
   }
 };
 
-const Router = ({ page }) => {
+const Router = ({ page, roomPending }) => {
   return (<div>
     <Header/>
-    {getPage({ page })}
+    {getPage({ page, roomPending })}
   </div>);
 };
 

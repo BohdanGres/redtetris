@@ -4,10 +4,8 @@ import React from 'react'
 import { Row } from './../Row/index';
 import {connect} from "react-redux";
 import Grid from "@material-ui/core/Grid";
-import Typography from "@material-ui/core/Typography";
-import Paper from "@material-ui/core/Paper";
 import {makeStyles} from "@material-ui/core";
-
+import socket from './../../utils/socket';
 
 const useStyles = makeStyles(theme => ({
   toolbar: {
@@ -106,9 +104,7 @@ const mapTable = ({ table, current }) => {
 
 
 const   otherBoard = (tables = []) => {
-  console.log('??????',tables);
  return  tables.map(board => {
-   console.log('board', board);
    return (
      <div>
        <div className={`board ${board.isEnd ? 'looser' : '' }`}>
@@ -121,6 +117,10 @@ const   otherBoard = (tables = []) => {
 
 const BoardMain = ({ width, height, array, gameData, tables, userUuid }) => {
   const classes = useStyles();
+  if (!tables || !tables[userUuid]) {
+    socket.emit('getGame', { playerId: userUuid })
+    return '';
+  }
   const newTable = { table: mapTable(tables[userUuid]), isEnd: tables[userUuid].isEnd };
   const otherTable = [];
   Object.keys(tables).forEach(tblId => {
