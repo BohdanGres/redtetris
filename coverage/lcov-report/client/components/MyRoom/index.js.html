@@ -20,9 +20,9 @@
     </h1>
     <div class='clearfix'>
       <div class='fl pad1y space-right2'>
-        <span class="strong">0% </span>
+        <span class="strong">52.63% </span>
         <span class="quiet">Statements</span>
-        <span class='fraction'>0/19</span>
+        <span class='fraction'>10/19</span>
       </div>
       <div class='fl pad1y space-right2'>
         <span class="strong">0% </span>
@@ -35,16 +35,16 @@
         <span class='fraction'>0/6</span>
       </div>
       <div class='fl pad1y space-right2'>
-        <span class="strong">0% </span>
+        <span class="strong">52.63% </span>
         <span class="quiet">Lines</span>
-        <span class='fraction'>0/19</span>
+        <span class='fraction'>10/19</span>
       </div>
     </div>
     <p class="quiet">
       Press <em>n</em> or <em>j</em> to go to the next uncovered block, <em>b</em>, <em>p</em> or <em>k</em> for the previous block.
     </p>
   </div>
-  <div class='status-line low'></div>
+  <div class='status-line medium'></div>
 <pre><table class="coverage">
 <tr><td class="line-count quiet"><a name='L1'></a><a href='#L1'>1</a>
 <a name='L2'></a><a href='#L2'>2</a>
@@ -100,27 +100,23 @@
 <a name='L52'></a><a href='#L52'>52</a>
 <a name='L53'></a><a href='#L53'>53</a>
 <a name='L54'></a><a href='#L54'>54</a>
-<a name='L55'></a><a href='#L55'>55</a></td><td class="line-coverage quiet"><span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<a name='L55'></a><a href='#L55'>55</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -133,6 +129,10 @@
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -152,17 +152,17 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js"><span class="cstat-no" title="statement not covered" >import React from 'react'</span>
-<span class="cstat-no" title="statement not covered" >import Typography from "@material-ui/core/Typography";</span>
-<span class="cstat-no" title="statement not covered" >import Button from "@material-ui/core/Button";</span>
-<span class="cstat-no" title="statement not covered" >import socket from "../../utils/socket";</span>
-<span class="cstat-no" title="statement not covered" >import List from '@material-ui/core/List';</span>
-<span class="cstat-no" title="statement not covered" >import ListItem from '@material-ui/core/ListItem';</span>
-<span class="cstat-no" title="statement not covered" >import ListItemText from '@material-ui/core/ListItemText';</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import React from 'react'
+import Typography from "@material-ui/core/Typography";
+import Button from "@material-ui/core/Button";
+import socket from "../../utils/socket";
+import List from '@material-ui/core/List';
+import ListItem from '@material-ui/core/ListItem';
+import ListItemText from '@material-ui/core/ListItemText';
 &nbsp;
-const <span class="fstat-no" title="function not covered" >playerList </span>= <span class="cstat-no" title="statement not covered" >(n</span>ame, i) =&gt; (
+const <span class="fstat-no" title="function not covered" >playerList </span>= (name, i) =&gt; (
   &lt;ListItem key={i}&gt;
     &lt;ListItemText
       variant='h3'
@@ -170,7 +170,7 @@ const <span class="fstat-no" title="function not covered" >playerList </span>= <
     /&gt;
   &lt;/ListItem&gt;);
 &nbsp;
-const <span class="fstat-no" title="function not covered" >MyRoom </span>= <span class="cstat-no" title="statement not covered" >(room, userUuid) =&gt; {</span>
+const <span class="fstat-no" title="function not covered" >MyRoom </span>= (room, userUuid) =&gt; {
   const <span class="fstat-no" title="function not covered" >handler </span>= <span class="cstat-no" title="statement not covered" >() =&gt; {</span>
 <span class="cstat-no" title="statement not covered" >    socket.e</span>mit('gameStart', { roomId: room.roomId, playerId: userUuid });
   };
@@ -206,7 +206,7 @@ const <span class="fstat-no" title="function not covered" >MyRoom </span>= <span
   )
 };
 &nbsp;
-export default <span class="cstat-no" title="statement not covered" >MyRoom;</span>
+export default MyRoom;
 &nbsp;
 &nbsp;</pre></td></tr>
 </table></pre>
@@ -214,7 +214,7 @@ export default <span class="cstat-no" title="statement not covered" >MyRoom;</sp
 </div><!-- /wrapper -->
 <div class='footer quiet pad2 space-top1 center small'>
   Code coverage
-  generated by <a href="https://istanbul.js.org/" target="_blank">istanbul</a> at Wed Jul 31 2019 16:05:23 GMT+0300 (EEST)
+  generated by <a href="https://istanbul.js.org/" target="_blank">istanbul</a> at Mon Aug 05 2019 18:47:13 GMT+0300 (EEST)
 </div>
 </div>
 <script src="../../../prettify.js"></script>

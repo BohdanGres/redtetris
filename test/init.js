@@ -11,7 +11,7 @@ import * as roomList from '../src/client/actions/roomListUpdate'
 import * as set from '../src/client/actions/setName'
 import * as user from '../src/client/actions/userCreate'
 
-import {expect, any} from 'chai'
+import {assert, expect, any} from 'chai'
 
 describe('user test all actions', () => {
   it('should test init function', () => {
@@ -90,9 +90,52 @@ describe('user test all actions', () => {
       expect(user.userCreate()).to.deep.equal({type:'USER_CREATE', userData: any})
     }
   )
-  // it ('should be true when actions is test', done => {
-  //   const lol = rotate('delta')
-  //   assert.equal(true,_.isEqual(lol, {type: 'client/rotate', mat: delta}))
-  //   done()
-  // })
 })
+
+import * as style from '../src/client/components/BoardMain/index'
+import * as table from '../src/client/components/BoardMain/index'
+import {Row} from "../src/client/components/Row";
+import React from "react";
+
+// describe('GameContainr', function() {
+//   it('should add class to element', function() {
+//     var element = { className: '' };
+//
+//     GameContainr(element, 'test-class');
+//
+//     assert.equal(element.className, 'test-class');
+//   });
+//
+//   it('should not add a class which already exists');
+// });
+
+describe('Board main', () => {
+  it('should styles', () => {
+      expect(style.makeStyles()).to.deep.equal({theme: any})
+    }
+  )
+  it('BuildRow', function() {
+      expect(buildRow({ table })).to.deep.equal(<Row key={i}  row={row}/>)
+    }
+  )
+})
+
+
+//need to be fixed with DOM - make a lot of profit for tests
+
+// import * as index from '../src/client/index'
+// import {Provider} from "react-redux";
+// import Router from "../src/client/utils/router";
+// import Popup from "../src/client/components/Popup";
+// import ErrorPopup from "../src/client/components/ErrorPopup";
+// import WinerPopup from "../src/client/components/WinerPopup";
+//
+// describe('Board main', () => {
+//   it('should test user create function', () => {
+//       expect(index.getElementById()).to.deep.equal({ app: 'tetris'})
+//     }
+//   )
+// })
+
+
+

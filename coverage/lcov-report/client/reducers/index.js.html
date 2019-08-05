@@ -20,24 +20,24 @@
     </h1>
     <div class='clearfix'>
       <div class='fl pad1y space-right2'>
-        <span class="strong">0% </span>
+        <span class="strong">13.89% </span>
         <span class="quiet">Statements</span>
-        <span class='fraction'>0/73</span>
+        <span class='fraction'>10/72</span>
       </div>
       <div class='fl pad1y space-right2'>
-        <span class="strong">0% </span>
+        <span class="strong">6.9% </span>
         <span class="quiet">Branches</span>
-        <span class='fraction'>0/58</span>
+        <span class='fraction'>4/58</span>
       </div>
       <div class='fl pad1y space-right2'>
-        <span class="strong">0% </span>
+        <span class="strong">50% </span>
         <span class="quiet">Functions</span>
-        <span class='fraction'>0/2</span>
+        <span class='fraction'>1/2</span>
       </div>
       <div class='fl pad1y space-right2'>
-        <span class="strong">0% </span>
+        <span class="strong">11.59% </span>
         <span class="quiet">Lines</span>
-        <span class='fraction'>0/70</span>
+        <span class='fraction'>8/69</span>
       </div>
     </div>
     <p class="quiet">
@@ -165,11 +165,14 @@
 <a name='L117'></a><a href='#L117'>117</a>
 <a name='L118'></a><a href='#L118'>118</a>
 <a name='L119'></a><a href='#L119'>119</a>
-<a name='L120'></a><a href='#L120'>120</a>
-<a name='L121'></a><a href='#L121'>121</a></td><td class="line-coverage quiet"><span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<a name='L120'></a><a href='#L120'>120</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -194,10 +197,6 @@
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
@@ -278,45 +277,44 @@
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js"><span class="cstat-no" title="statement not covered" >import config from './../../../etc/config-ui';</span>
-<span class="cstat-no" title="statement not covered" >import { xHandler } from './../utils/gameHandlers'</span>
-<span class="cstat-no" title="statement not covered" >import socket from './../utils/socket';</span>
-<span class="cstat-no" title="statement not covered" >import { getCookie } from './../utils/cookie';</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import config from './../../../etc/config-ui';
+import { xHandler } from './../utils/gameHandlers'
+import socket from './../utils/socket';
+import { getCookie } from './../utils/cookie';
 &nbsp;
-const <span class="fstat-no" title="function not covered" >reducer </span>= <span class="cstat-no" title="statement not covered" >(state = {}, action) =&gt; <span class="cstat-no" title="statement not covered" ><span class="cstat-no" title="statement not covered" >{</span></span></span>
+const reducer = (state = <span class="branch-1 cbranch-no" title="branch not covered" >{}, a</span>ction) =&gt; {
 &nbsp;
-<span class="cstat-no" title="statement not covered" >  switch(a</span>ction.type) {
-    case 'server/ping':
+  switch(action.type) {
+<span class="branch-0 cbranch-no" title="branch not covered" >    case 'server/ping':</span>
 <span class="cstat-no" title="statement not covered" >      return { ...s</span>tate };
-    case 'INIT_TYPE':
+<span class="branch-1 cbranch-no" title="branch not covered" >    case 'INIT_TYPE':</span>
 <span class="cstat-no" title="statement not covered" >      return { ...s</span>tate, ...action.body };
-    case 'ALERT_POP':
+<span class="branch-2 cbranch-no" title="branch not covered" >    case 'ALERT_POP':</span>
 <span class="cstat-no" title="statement not covered" >      return { ...s</span>tate, ...action}
-    case 'CHANGE_WIDTH':
+<span class="branch-3 cbranch-no" title="branch not covered" >    case 'CHANGE_WIDTH':</span>
 <span class="cstat-no" title="statement not covered" >      return { ...s</span>tate, width: action.width };
-    case 'SET_NAME':
+<span class="branch-4 cbranch-no" title="branch not covered" >    case 'SET_NAME':</span>
 <span class="cstat-no" title="statement not covered" >      return { ...s</span>tate, userName: action.name };
-    case 'ERROR':
+<span class="branch-5 cbranch-no" title="branch not covered" >    case 'ERROR':</span>
 <span class="cstat-no" title="statement not covered" >      return  { ...s</span>tate, error: action.error };
-    case 'USER_CREATE':
+<span class="branch-6 cbranch-no" title="branch not covered" >    case 'USER_CREATE':</span>
 <span class="cstat-no" title="statement not covered" >      return { ...s</span>tate, ...action.userData };
-    case 'AUTH':
+<span class="branch-7 cbranch-no" title="branch not covered" >    case 'AUTH':</span>
 <span class="cstat-no" title="statement not covered" >      return { ...s</span>tate, ...action.data };
-    case 'CLEAR_STORE':
+<span class="branch-8 cbranch-no" title="branch not covered" >    case 'CLEAR_STORE':</span>
 <span class="cstat-no" title="statement not covered" >      return { ...a</span>ction.initialStore, userUuid: '', userName: '', userType: 'NEW_USER', loginPopup: true};
-    case 'CLEAR_STORE_SOFT':
-<span class="cstat-no" title="statement not covered" >      return { ...a</span>ction.initialStore};
-    case 'PAGE_CHANGE':
+<span class="branch-9 cbranch-no" title="branch not covered" >    case 'CLEAR_STORE_SOFT':</span>
+<span class="cstat-no" title="statement not covered" >      return { ...a</span>ction.initialStore, users: state.users};
+<span class="branch-10 cbranch-no" title="branch not covered" >    case 'PAGE_CHANGE':</span>
 <span class="cstat-no" title="statement not covered" >      return { ...s</span>tate, page: action.page };
-    case 'ROOM_LIST_UPDATE':
+<span class="branch-11 cbranch-no" title="branch not covered" >    case 'ROOM_LIST_UPDATE':</span>
 <span class="cstat-no" title="statement not covered" >      if (state.roomPending) {</span>
         const roomPendingIndex = <span class="cstat-no" title="statement not covered" >action.</span>roomList.findIndex(<span class="fstat-no" title="function not covered" >room<span class="cstat-no" title="statement not covered" > </span>=&gt; r</span>oom.roomId === state.roomPending.roomId)
 <span class="cstat-no" title="statement not covered" >        if (roomPendingIndex !== -1) {</span>
@@ -324,24 +322,24 @@ const <span class="fstat-no" title="function not covered" >reducer </span>= <spa
         }
       }
 <span class="cstat-no" title="statement not covered" >      return {...s</span>tate, roomList: action.roomList };
-    case 'ROOM_CREATE':
+<span class="branch-12 cbranch-no" title="branch not covered" >    case 'ROOM_CREATE':</span>
 <span class="cstat-no" title="statement not covered" >      return { ...s</span>tate, roomPending: action.room };
-    case 'ROOM_SUBSCRIBE':
+<span class="branch-13 cbranch-no" title="branch not covered" >    case 'ROOM_SUBSCRIBE':</span>
 <span class="cstat-no" title="statement not covered" >      return { ...s</span>tate, roomPending: action.room };
-    case 'SESSION_INIT':
+<span class="branch-14 cbranch-no" title="branch not covered" >    case 'SESSION_INIT':</span>
       let inGame = ( <span class="cstat-no" title="statement not covered" >action.roomPending &amp;&amp;  action.roomPending.status === 'IN GAME') ?</span>
         { ...action.roomPending,  page: 'game' } : {};
 <span class="cstat-no" title="statement not covered" >      return { ...s</span>tate, roomPending: action.roomPending, ...inGame, winerName: null, blockDown: false };
-    case 'GAME_START':
+<span class="branch-15 cbranch-no" title="branch not covered" >    case 'GAME_START':</span>
 <span class="cstat-no" title="statement not covered" >      return { ...s</span>tate, roomPending: null, ...action.gameData, page: 'game', blockDown: false };
-    case 'GAME_UPDATE':
+<span class="branch-16 cbranch-no" title="branch not covered" >    case 'GAME_UPDATE':</span>
 <span class="cstat-no" title="statement not covered" >      if (action.gameData.updatedBy !== state.userUuid) {</span>
 <span class="cstat-no" title="statement not covered" >        action.</span>gameData.tables[state.userUuid] = state.tables[state.userUuid];
       } else <span class="cstat-no" title="statement not covered" >if (action.gameData.updatedBy === state.userUuid &amp;&amp; action.gameData.tables[state.userUuid].isEnd) {</span>
 <span class="cstat-no" title="statement not covered" >        return { ...s</span>tate, roomPending: null, ...action.gameData, page: 'game', blockDown: true };
       }
 <span class="cstat-no" title="statement not covered" >      return { ...s</span>tate, roomPending: null, ...action.gameData, page: 'game', blockDown: false };
-    case 'Y_ARROW':
+<span class="branch-17 cbranch-no" title="branch not covered" >    case 'Y_ARROW':</span>
       let newStateY = <span class="cstat-no" title="statement not covered" >JSON.</span>parse(JSON.stringify(state));// { ...state };
 &nbsp;
       let tableStateY = <span class="cstat-no" title="statement not covered" >newStateY.</span>tables[newStateY.userUuid];
@@ -358,7 +356,7 @@ const <span class="fstat-no" title="function not covered" >reducer </span>= <spa
 <span class="cstat-no" title="statement not covered" >      newStateY.</span>tables[newStateY.userUuid].current.cord.y += action.pos;
 <span class="cstat-no" title="statement not covered" >      newStateY.</span>i = newStateY.i + 1;
 <span class="cstat-no" title="statement not covered" >      return n</span>ewStateY;
-    case 'X_ARROW':
+<span class="branch-18 cbranch-no" title="branch not covered" >    case 'X_ARROW':</span>
       let newStateX = <span class="cstat-no" title="statement not covered" >JSON.</span>parse(JSON.stringify(state));
       let tableState = <span class="cstat-no" title="statement not covered" >newStateX.</span>tables[newStateX.userUuid];
       let lengthX = <span class="cstat-no" title="statement not covered" >tableState.current.cord.x + tableState.current.figure.figure.length + action.pos;</span>
@@ -375,7 +373,7 @@ const <span class="fstat-no" title="function not covered" >reducer </span>= <spa
 <span class="cstat-no" title="statement not covered" >      newStateX.</span>tables[newStateX.userUuid].current.cord.x += action.pos;
 <span class="cstat-no" title="statement not covered" >      newStateX.</span>i = newStateX.i + 1;
 <span class="cstat-no" title="statement not covered" >      return n</span>ewStateX;
-    case 'ROTATE':
+<span class="branch-19 cbranch-no" title="branch not covered" >    case 'ROTATE':</span>
       let rotateState<span class="cstat-no" title="statement not covered" > = { ...s</span>tate };
       let d = <span class="cstat-no" title="statement not covered" >rotateState.tables[rotateState.userUuid].current.cord.y;</span>
 <span class="cstat-no" title="statement not covered" >      if (d + action.mat.length &gt; 9) {</span>
@@ -385,26 +383,25 @@ const <span class="fstat-no" title="function not covered" >reducer </span>= <spa
 &nbsp;
 <span class="cstat-no" title="statement not covered" >      rotateState.</span>i++;
 <span class="cstat-no" title="statement not covered" >      return r</span>otateState;
-    case 'BLOCK_DOWN':
+<span class="branch-20 cbranch-no" title="branch not covered" >    case 'BLOCK_DOWN':</span>
 <span class="cstat-no" title="statement not covered" >      return { ...s</span>tate, blockDown: true };
-    case 'BLOCK_ROW':
+<span class="branch-21 cbranch-no" title="branch not covered" >    case 'BLOCK_ROW':</span>
 <span class="cstat-no" title="statement not covered" >      if (action.gameData.updatedBy !== action.gameData.updatedBy) {</span>
 <span class="cstat-no" title="statement not covered" >        action.</span>gameData.tables[state.userUuid] = state.tables[state.userUuid];
       }
 <span class="cstat-no" title="statement not covered" >      return { ...s</span>tate, roomPending: null, ...action.gameData, page: 'game', blockDown: false };
-    case 'BLOCK':
+<span class="branch-22 cbranch-no" title="branch not covered" >    case 'BLOCK':</span>
 <span class="cstat-no" title="statement not covered" >      return { ...s</span>tate, blockDown: true };
-    case 'USER_LIST':
+<span class="branch-23 cbranch-no" title="branch not covered" >    case 'USER_LIST':</span>
 <span class="cstat-no" title="statement not covered" >      return { ...s</span>tate, users: action.users };
-    case 'GAME_END':
-<span class="cstat-no" title="statement not covered" >      console.</span>log('action.name', action.name);
+<span class="branch-24 cbranch-no" title="branch not covered" >    case 'GAME_END':</span>
 <span class="cstat-no" title="statement not covered" >      return { ...s</span>tate, winerName: action.name };
     default:
-<span class="cstat-no" title="statement not covered" >      return s</span>tate
+      return state
   }
 };
 &nbsp;
-export default <span class="cstat-no" title="statement not covered" >reducer;</span>
+export default reducer;
 &nbsp;
 &nbsp;</pre></td></tr>
 </table></pre>
@@ -412,7 +409,7 @@ export default <span class="cstat-no" title="statement not covered" >reducer;</s
 </div><!-- /wrapper -->
 <div class='footer quiet pad2 space-top1 center small'>
   Code coverage
-  generated by <a href="https://istanbul.js.org/" target="_blank">istanbul</a> at Wed Jul 31 2019 16:05:23 GMT+0300 (EEST)
+  generated by <a href="https://istanbul.js.org/" target="_blank">istanbul</a> at Mon Aug 05 2019 18:47:13 GMT+0300 (EEST)
 </div>
 </div>
 <script src="../../prettify.js"></script>
