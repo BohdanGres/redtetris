@@ -123,10 +123,12 @@ export default function initRouter(socket) {
   });
 
   socket.on('urlCreate', async ({ roomName, playerId }) => {
+    console.log({ roomName, playerId });
     const res = new Res({ connectionType: 'singleRequest', socket });
 
     const srv = new service.Room.UrlCreate.Create();
     const { type, roomId } = await srv.run({ name: roomName, playerId });
+    console.log({ type, roomId });
     if (type === 'CREATE') {
       makeServiceRunner(service.Room.Create,
         { name: roomName },
@@ -138,7 +140,10 @@ export default function initRouter(socket) {
         await contextBuilder({ userUuid: playerId })
       )({ res, req });
     } else if (type === 'NO_USER') {
-
+      makeServiceRunner(service.Room.UrlCreate.Delete,
+        { roomId, playerId },
+        await contextBuilder({ userUuid: playerId })
+      )({ res, req });
     }
   });
 

@@ -3,9 +3,10 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-var storeStateMiddleWare = exports.storeStateMiddleWare = function storeStateMiddleWare(_ref) {
-  var getState = _ref.getState;
+exports.storeStateMiddleWare = void 0;
 
+var storeStateMiddleWare = function storeStateMiddleWare(_ref) {
+  var getState = _ref.getState;
   return function (next) {
     return function (action) {
       var returnValue = next(action);
@@ -14,3 +15,5 @@ var storeStateMiddleWare = exports.storeStateMiddleWare = function storeStateMid
     };
   };
 };
+
+exports.storeStateMiddleWare = storeStateMiddleWare;

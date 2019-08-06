@@ -1,47 +1,34 @@
-'use strict';
+"use strict";
 
-var _react = require('react');
+var _react = _interopRequireDefault(require("react"));
 
-var _react2 = _interopRequireDefault(_react);
+var _reactDom = _interopRequireDefault(require("react-dom"));
 
-var _reactDom = require('react-dom');
+var _reactRedux = require("react-redux");
 
-var _reactDom2 = _interopRequireDefault(_reactDom);
+var _router = _interopRequireDefault(require("./utils/router"));
 
-var _reduxLogger = require('redux-logger');
+var _store = _interopRequireDefault(require("./utils/store"));
 
-var _reduxLogger2 = _interopRequireDefault(_reduxLogger);
+var _Popup = _interopRequireDefault(require("./components/Popup"));
 
-var _reduxThunk = require('redux-thunk');
+var _ErrorPopup = _interopRequireDefault(require("./components/ErrorPopup"));
 
-var _reduxThunk2 = _interopRequireDefault(_reduxThunk);
+var _WinerPopup = _interopRequireDefault(require("./components/WinerPopup"));
 
-var _redux = require('redux');
+var _eventListener = _interopRequireDefault(require("./utils/eventListener"));
 
-var _reactRedux = require('react-redux');
+var _urlParse = _interopRequireDefault(require("./utils/urlParse"));
 
-var _storeStateMiddleWare = require('./middleware/storeStateMiddleWare');
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
 
-var _reducers = require('./reducers');
+// socket.emit('action', { type: 'init'} );
+// socket.emit('roomList', {} );
+// socket.emit('initSession', getUserState());
+(0, _eventListener["default"])();
+(0, _urlParse["default"])();
+var app = document.getElementById('tetris');
 
-var _reducers2 = _interopRequireDefault(_reducers);
-
-var _app = require('./containers/app');
-
-var _app2 = _interopRequireDefault(_app);
-
-var _alert = require('./actions/alert');
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-var initialState = {};
-
-var store = (0, _redux.createStore)(_reducers2.default, initialState, (0, _redux.applyMiddleware)(_reduxThunk2.default, (0, _reduxLogger2.default)()));
-
-_reactDom2.default.render(_react2.default.createElement(
-  _reactRedux.Provider,
-  { store: store },
-  _react2.default.createElement(_app2.default, null)
-), document.getElementById('tetris'));
-
-store.dispatch((0, _alert.alert)('Soon, will be here a fantastic Tetris ...'));
+_reactDom["default"].render(_react["default"].createElement(_reactRedux.Provider, {
+  store: _store["default"]
+}, _react["default"].createElement(_router["default"], null), _react["default"].createElement(_Popup["default"], null), _react["default"].createElement(_ErrorPopup["default"], null), _react["default"].createElement(_WinerPopup["default"], null)), app);

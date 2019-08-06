@@ -22,7 +22,7 @@ export default function () {
       } else {
         socket.emit('urlCreate', { roomName, playerId: getCookie('uuid') });
       }
-
+      window.location.hash = '';
 
   }
 }

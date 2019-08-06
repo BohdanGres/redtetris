@@ -1,30 +1,19 @@
-'use strict';
+"use strict";
 
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
+exports["default"] = void 0;
 
-var _react = require('react');
+var _react = _interopRequireDefault(require("react"));
 
-var _react2 = _interopRequireDefault(_react);
+var _BoardMain = _interopRequireDefault(require("./../components/BoardMain"));
 
-var _reactRedux = require('react-redux');
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
 
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-var App = function App(_ref) {
-  var message = _ref.message;
-
-  return _react2.default.createElement(
-    'span',
-    null,
-    message
-  );
+var App = function App() {
+  return _react["default"].createElement(_BoardMain["default"], null);
 };
 
-var mapStateToProps = function mapStateToProps(state) {
-  return {
-    message: state.message
-  };
-};
-exports.default = (0, _reactRedux.connect)(mapStateToProps, null)(App);
+var _default = App;
+exports["default"] = _default;

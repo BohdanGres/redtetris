@@ -39,8 +39,8 @@ socket.on('action', (data) => {
       store.dispatch(error(data.error));
       break;
     case 'userCreate':
-      setCookie('uuid', data.uuid, 1);
-      setCookie('userName', data.name, 10);
+      setCookie('uuid', data.uuid, 60);
+      setCookie('userName', data.name, 60);
       store.dispatch(auth({ userUuid: data.uuid, userName:  data.name, userType: 'LOGED', loginPopup: false }));
       break;
     case 'listRoomUpdate':
@@ -78,6 +78,12 @@ socket.on('action', (data) => {
     case 'reset':
       store.dispatch(clearStoreSoft(getInitialState()));
       break;
+    case 'NO_USER':
+      setCookie('uuid', '', 60);
+      setCookie('userName', '', 60);
+      store.dispatch(clearStoreSoft(getInitialState()));
+      break;
+
   }
 });
 
