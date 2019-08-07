@@ -4,8 +4,14 @@ import * as act from '../src/client/actions/errorModal'
 import * as acti from '../src/client/actions/auth'
 import * as store from '../src/client/actions/clearStore'
 import * as game from '../src/client/actions/gameAction'
+import * as serv from '../src/client/actions/server'
+import * as page from '../src/client/actions/pageChange'
+import * as room from '../src/client/actions/roomCreate'
+import * as roomList from '../src/client/actions/roomListUpdate'
+import * as set from '../src/client/actions/setName'
+import * as user from '../src/client/actions/userCreate'
 
-import {expect, any} from 'chai'
+import {assert, expect, any} from 'chai'
 
 describe('user test all actions', () => {
   it('should test init function', () => {
@@ -56,9 +62,75 @@ describe('user test all actions', () => {
       expect(game.block()).to.deep.equal({type:'BLOCK'})
     }
   )
-  it ('should be true when actions is test', done => {
-    const lol = rotate('delta')
-    assert.equal(true,_.isEqual(lol, {type: 'client/rotate', mat: delta}))
-    done()
-  })
+  it('should test server function', () => {
+      expect(serv.ping()).to.deep.equal({type:'server/ping'})
+    }
+  )
+  it('should test page change function', () => {
+      expect(page.pageChange()).to.deep.equal({type:'PAGE_CHANGE', page: any})
+    }
+  )
+  it('should test room create function', () => {
+      expect(room.roomCreate()).to.deep.equal({type:'ROOM_CREATE', room: any})
+    }
+  )
+  it('should test room subscribe function', () => {
+      expect(room.roomSubscribe()).to.deep.equal({type:'ROOM_SUBSCRIBE', room: any})
+    }
+  )
+  it('should test room list update function', () => {
+      expect(roomList.roomListUpdate()).to.deep.equal({type:'ROOM_LIST_UPDATE', roomList: any})
+    }
+  )
+  it('should test set name function', () => {
+      expect(set.setName()).to.deep.equal({type:'SET_NAME', name: any})
+    }
+  )
+  it('should test user create function', () => {
+      expect(user.userCreate()).to.deep.equal({type:'USER_CREATE', userData: any})
+    }
+  )
 })
+
+import * as style from '../src/client/components/BoardMain/index'
+import * as table from '../src/client/components/BoardMain/index'
+import {Row} from "../src/client/components/Row";
+import React from "react";
+
+// describe('GameContainr', function() {
+//   it('should add class to element', function() {
+//     var element = { className: '' };
+//
+//     GameContainr(element, 'test-class');
+//
+//     assert.equal(element.className, 'test-class');
+//   });
+//
+//   it('should not add a class which already exists');
+// });
+
+describe('Board main', () => {
+  it('should styles', () => {
+      expect(style.makeStyles()).to.deep.equal({theme: any})
+    }
+  )
+  it('BuildRow', function() {
+      expect(buildRow({ table })).to.deep.equal(<Row key={i}  row={row}/>)
+    }
+  )
+})
+
+
+//need to be fixed with DOM - make a lot of profit for tests
+
+import * as index from '../src/client/index'
+
+describe('Board main', () => {
+  it('should test getting tetris id', () => {
+      expect(index.getElementById()).to.deep.equal({ app: 'tetris'})
+    }
+  )
+})
+
+
+

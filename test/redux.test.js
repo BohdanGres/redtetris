@@ -1,25 +1,49 @@
-import reducer from '../src/client/reducers/alert'
-import chai from "chai";
-import { configureStore } from "./helpers/server";
+// import reducer from '../src/client/reducers/alert'
+// import chai from "chai";
+// import { configureStore } from "./helpers/server";
+// import { alert } from './../src/client/actions/alert'
+//
+// const MESSAGE = "message";
+// chai.should();
+// describe('test alert action', ()=>{
+//
+//
+//
+//   it('SUPER TESOVUI TEST', (done) =>{
+//   let defaultState = {};
+//
+//   const store = configureStore(reducer, null, defaultState, {
+//     ALERT_POP: ({dispatch, getState}) =>  {
+//       const state = getState();
+//       state.message.should.equal(MESSAGE);
+//       done()
+//     }});
+//   store.dispatch(alert(MESSAGE))
+//   })
+// })
+
+
+
+import {configureStore} from './helpers/server'
+
+import rootReducer from '../src/client/reducers/alert'
 import { alert } from './../src/client/actions/alert'
+import chai from "chai"
+const MESSAGE = "message"
+chai.should()
+describe('Fake redux test', function(){
+  it('alert it', function(done){
+    let initialState = {}
+    const store =  configureStore(rootReducer, null, initialState, {
+      ALERT_POP: ({dispatch, getState}) =>  {
+        const state = getState()
+        state.message.should.equal(MESSAGE)
+        done()
+      }
+    })
+    store.dispatch(alert(MESSAGE))
+  });
 
-const MESSAGE = "message";
-chai.should();
-describe('test alert action', ()=>{
-
-
-
-  it('SUPER TESOVUI TEST', (done) =>{
-  let defaultState = {};
-
-  const store = configureStore(reducer, null, defaultState, {
-    ALERT_POP: ({dispatch, getState}) =>  {
-      const state = getState();
-      state.message.should.equal(MESSAGE);
-      done()
-    }});
-  store.dispatch(alert(MESSAGE))
-  })
-})
+});
 
 
