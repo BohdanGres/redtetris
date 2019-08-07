@@ -123,19 +123,14 @@ describe('Board main', () => {
 
 //need to be fixed with DOM - make a lot of profit for tests
 
-// import * as index from '../src/client/index'
-// import {Provider} from "react-redux";
-// import Router from "../src/client/utils/router";
-// import Popup from "../src/client/components/Popup";
-// import ErrorPopup from "../src/client/components/ErrorPopup";
-// import WinerPopup from "../src/client/components/WinerPopup";
-//
-// describe('Board main', () => {
-//   it('should test user create function', () => {
-//       expect(index.getElementById()).to.deep.equal({ app: 'tetris'})
-//     }
-//   )
-// })
+import * as index from '../src/client/index'
+
+describe('Board main', () => {
+  it('should test getting tetris id', () => {
+      expect(index.getElementById()).to.deep.equal({ app: 'tetris'})
+    }
+  )
+})
 
 
 
