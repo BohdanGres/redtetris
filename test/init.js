@@ -9,7 +9,7 @@ import * as page from '../src/client/actions/pageChange'
 import * as room from '../src/client/actions/roomCreate'
 import * as roomList from '../src/client/actions/roomListUpdate'
 import * as set from '../src/client/actions/setName'
-import * as user from '../src/client/actions/userCreate'
+import * as users from '../src/client/actions/userCreate'
 
 import {assert, expect, any} from 'chai'
 
@@ -87,27 +87,14 @@ describe('user test all actions', () => {
     }
   )
   it('should test user create function', () => {
-      expect(user.userCreate()).to.deep.equal({type:'USER_CREATE', userData: any})
+      expect(users.userCreate()).to.deep.equal({type:'USER_CREATE', userData: any})
     }
   )
 })
 
+
 import * as style from '../src/client/components/BoardMain/index'
 import * as table from '../src/client/components/BoardMain/index'
-import {Row} from "../src/client/components/Row";
-import React from "react";
-
-// describe('GameContainr', function() {
-//   it('should add class to element', function() {
-//     var element = { className: '' };
-//
-//     GameContainr(element, 'test-class');
-//
-//     assert.equal(element.className, 'test-class');
-//   });
-//
-//   it('should not add a class which already exists');
-// });
 
 describe('Board main', () => {
   it('should styles', () => {
@@ -120,37 +107,70 @@ describe('Board main', () => {
   )
 })
 
-
-//need to be fixed with DOM - make a lot of profit for tests - fixed
-
+//
+// //need to be fixed with DOM - make a lot of profit for tests - fixed
+//
 import * as index from '../src/client/index'
 
-describe('Board main', () => {
+describe('client', () => {
   it('should test getting tetris id', () => {
-      expect(index.getElementById()).to.deep.equal({ app: 'tetris'})
+      expect(index.getElementByid()).to.deep.equal({ app: 'tetris'})
     }
   )
 })
 
-//
-// import * as s from '../src/server/service/Room/Subscriber/Create'
+import * as indexserver from '../src/server/index'
 
-// describe('execute', function() {
-//   it('should return room Subscribtion', function() {
-//     //var element = { roomId, playerId }
-//     expect(s.execute(element)).to.deep.equal({ Status: 1, type: 'roomSubscribe', game: game.getValue()})
-//   })
-// })
+describe('server', () => {
+  it('should test server init', () => {
+      expect(indexserver.create()).to.deep.equal(promise)
+    }
+  )
+})
 
-// const execute = require('../src/server/service/Room/Subscriber/Create').execute
-//
-// describe('should return room Subscribtion', function () {
-//   it('Return paper', function () {
-//     let result = execute(['roomId', 'playerId']);
-//     assert.equal(result, {
-//       Status: 1,
-//       type: 'roomSubscribe',
-//       game: game.getValue(),
-//     })
-//   })
-// })
+import { Create } from '../src/server/service/Room/Subscriber/Create'
+
+describe('should return room Subscribtion', function () {
+  it('Return paper', function () {
+    let result = Create.execute(['roomId', 'playerId']);
+    assert.equal(result, {
+      Status: 1,
+      type: 'roomSubscribe',
+      game: game.getValue(),
+    })
+  })
+})
+
+import * as red from '../src/client/reducers/index'
+
+describe('reducers', () => {
+  it('should test reducers', () => {
+      expect(red.default()).to.deep.equal(any)
+    }
+  )
+})
+
+import * as mid from '../src/client/middleware/storeStateMiddleWare'
+
+describe('middleware', () => {
+  it('should test middleware', () => {
+      expect(mid.storeStateMiddleWare({ getState })).to.deep.equal(any)
+    }
+  )
+})
+
+import * as session from '../src/server/service/Session/Update'
+import { Update } from '../src/server/service/Session/Update'
+
+describe('session', () => {
+  it('session', function () {
+    let result = Update.execute(['name', 'password']);
+    assert.equal(result,{
+        Status: 1,
+        type: 'userCreate',
+        uuid: any,
+        name: any
+      })
+    }
+  )
+})
