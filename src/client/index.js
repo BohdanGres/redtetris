@@ -25,6 +25,4 @@ ReactDom.render((
     <ErrorPopup/>
     <WinerPopup/>
   </Provider>
-), app);
-
-//), app || document.createElement('div'));
+), app || document.createElement('div'));
