@@ -121,7 +121,7 @@ describe('Board main', () => {
 })
 
 
-//need to be fixed with DOM - make a lot of profit for tests
+//need to be fixed with DOM - make a lot of profit for tests - fixed
 
 import * as index from '../src/client/index'
 
@@ -132,5 +132,25 @@ describe('Board main', () => {
   )
 })
 
+//
+// import * as s from '../src/server/service/Room/Subscriber/Create'
 
+// describe('execute', function() {
+//   it('should return room Subscribtion', function() {
+//     //var element = { roomId, playerId }
+//     expect(s.execute(element)).to.deep.equal({ Status: 1, type: 'roomSubscribe', game: game.getValue()})
+//   })
+// })
 
+// const execute = require('../src/server/service/Room/Subscriber/Create').execute
+//
+// describe('should return room Subscribtion', function () {
+//   it('Return paper', function () {
+//     let result = execute(['roomId', 'playerId']);
+//     assert.equal(result, {
+//       Status: 1,
+//       type: 'roomSubscribe',
+//       game: game.getValue(),
+//     })
+//   })
+// })

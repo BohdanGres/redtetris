@@ -27,5 +27,4 @@ ReactDom.render((
   </Provider>
 ), app);
 
-
-
+//), app || document.createElement('div'));
