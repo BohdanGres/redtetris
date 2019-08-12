@@ -8,3 +8,5 @@ error-log.log
 tmp
 npm-debug.log
 node_modules
+coverage/*
+.nyc_output/

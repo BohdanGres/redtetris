@@ -12,6 +12,8 @@ import * as set from '../src/client/actions/setName'
 import * as users from '../src/client/actions/userCreate'
 
 import {assert, expect, any} from 'chai'
+import { makeStyles } from '@material-ui/core/styles';
+
 
 describe('user test all actions', () => {
   it('should test init function', () => {
@@ -120,10 +122,11 @@ describe('client', () => {
 })
 
 import * as indexserver from '../src/server/index'
+import { params } from '../params';
 
 describe('server', () => {
   it('should test server init', () => {
-      expect(indexserver.create()).to.deep.equal(promise)
+      expect(indexserver.create(params.server)).to.deep.equal(promise)
     }
   )
 })
