@@ -1,27 +1,49 @@
-import chai from "chai"
+import chai, {any, expect} from "chai"
 import {startServer, configureStore} from './helpers/server'
-import rootReducer from '../src/client/reducers'
-import {ping} from '../src/client/actions/server'
-import io from 'socket.io-client'
+import openSocket from 'socket.io-client';
 import params from '../params'
 
 chai.should()
 
 describe('Fake server test', function(){
   let tetrisServer
-  before(cb => startServer( params.server, function(err, server){
+  before(cb => startServer(params.server, function(err, server){
     tetrisServer = server
     cb()
   }))
 
   after(function(done){tetrisServer.stop(done)})
+  const socket = openSocket('http://localhost:3004');
+  it('should return room list', async function() {
 
-  it('should pong', function(done){
+
+    socket.emit('roomList', {} );
     const initialState = {}
-    const socket = io(params.server.url)
-    const store =  configureStore(rootReducer, socket, initialState, {
-      'pong': () =>  done()
-    })
-    store.dispatch(ping())
+
+    const res = new Promise((res, reject) => {
+      socket.on('action', data => {
+        res(data);
+      })
+    });
+
+    const test = await res;
+    test.should.deep.equal({ Status: 1, type: 'listRoomUpdate', roomList: [] })
   });
+
+
+  it('should return user list', async function() {
+
+    socket.emit('userList', {} );
+    const initialState = {}
+
+    const res = new Promise((res, reject) => {
+      socket.on('action', data => {
+        res(data);
+      })
+    });
+
+    const test = await res;
+    test.type.should.equal('listUser')
+  });
+
 });

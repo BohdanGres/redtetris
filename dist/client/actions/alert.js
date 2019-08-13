@@ -1,13 +1,18 @@
-'use strict';
+"use strict";
 
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-var ALERT_POP = exports.ALERT_POP = 'ALERT_POP';
+exports.alert = exports.ALERT_POP = void 0;
+var ALERT_POP = 'ALERT_POP';
+exports.ALERT_POP = ALERT_POP;
 
-var alert = exports.alert = function alert(message) {
+var alert = function alert(body) {
   return {
     type: ALERT_POP,
-    message: message
+    body: body,
+    message: body
   };
 };
+
+exports.alert = alert;

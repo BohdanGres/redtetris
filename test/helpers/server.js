@@ -8,15 +8,15 @@ export const startServer = (params, cb) => {
     .catch( err => cb(err) )
 }
 
-export const configureStore = (reducer, socket, initialState, types) => createStore( 
-  reducer, 
-  initialState, 
+export const configureStore = (reducer, socket, initialState, types) => createStore(
+  reducer,
+  initialState,
   applyMiddleware(
-    myMiddleware(types), 
-    socketIoMiddleWare(socket),  
+    myMiddleware(types),
+    socketIoMiddleWare(socket),
     thunk
   )
-)
+);
 
 const isFunction = arg => { return typeof arg === 'function' }
 

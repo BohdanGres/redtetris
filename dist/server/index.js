@@ -1,75 +1,73 @@
-'use strict';
+"use strict";
 
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
 exports.create = create;
 
-var _fs = require('fs');
+var _debug = _interopRequireDefault(require("debug"));
 
-var _fs2 = _interopRequireDefault(_fs);
+var _SocketRouter = _interopRequireDefault(require("./router/SocketRouter"));
 
-var _debug = require('debug');
+var _RequestRouter = _interopRequireDefault(require("./router/RequestRouter"));
 
-var _debug2 = _interopRequireDefault(_debug);
+var _mongoose = _interopRequireDefault(require("mongoose"));
 
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+var _socket = _interopRequireDefault(require("./core/socket"));
 
-var logerror = (0, _debug2.default)('tetris:error'),
-    loginfo = (0, _debug2.default)('tetris:info');
+var _EventRouter = require("./router/EventRouter");
+
+var _gameContainer = _interopRequireDefault(require("./core/gameContainer"));
+
+var _Piece = _interopRequireDefault(require("./model/Piece"));
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
+
+var logerror = (0, _debug["default"])('tetris:error'),
+    loginfo = (0, _debug["default"])('tetris:info'); // mongoose.Promise = Promise;
+
+_mongoose["default"].connect("mongodb://localhost/mongo42");
+
+(0, _EventRouter.iniEventRouter)();
 
 var initApp = function initApp(app, params, cb) {
   var host = params.host,
       port = params.port;
-
-  var handler = function handler(req, res) {
-    var file = req.url === '/bundle.js' ? '/../../build/bundle.js' : '/../../index.html';
-    _fs2.default.readFile(__dirname + file, function (err, data) {
-      if (err) {
-        logerror(err);
-        res.writeHead(500);
-        return res.end('Error loading index.html');
-      }
-      res.writeHead(200);
-      res.end(data);
-    });
-  };
-
-  app.on('request', handler);
-
-  app.listen({ host: host, port: port }, function () {
-    loginfo('tetris listen on ' + params.url);
+  app.on('request', _RequestRouter["default"]);
+  app.listen({
+    host: host,
+    port: port
+  }, function () {
+    loginfo("tetris listen on ".concat(params.url));
     cb();
   });
 };
 
 var initEngine = function initEngine(io) {
-  io.on('connection', function (socket) {
-    loginfo("Socket connected: " + socket.id);
-    socket.on('action', function (action) {
-      if (action.type === 'server/ping') {
-        socket.emit('action', { type: 'pong' });
-      }
-    });
-  });
+  io.on('connection', _SocketRouter["default"]);
 };
 
 function create(params) {
   var promise = new Promise(function (resolve, reject) {
     var app = require('http').createServer();
+
     initApp(app, params, function () {
-      var io = require('socket.io')(app);
+      var io = new require('socket.io')(app);
+
+      _socket["default"].init(app);
+
       var stop = function stop(cb) {
-        io.close();
         app.close(function () {
           app.unref();
         });
-        loginfo('Engine stopped.');
+        loginfo("Engine stopped.");
         cb();
       };
 
-      initEngine(io);
-      resolve({ stop: stop });
+      initEngine(_socket["default"]);
+      resolve({
+        stop: stop
+      });
     });
   });
   return promise;
