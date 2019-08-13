@@ -13,10 +13,10 @@ describe('Fake server test', function(){
   }))
 
   after(function(done){tetrisServer.stop(done)})
+  const socket = openSocket('http://localhost:3004');
+  it('should return room list', async function() {
 
-  it('should retirn room list', async function() {
 
-    const socket = openSocket('http://localhost:3004');
     socket.emit('roomList', {} );
     const initialState = {}
 
@@ -30,5 +30,20 @@ describe('Fake server test', function(){
     test.should.deep.equal({ Status: 1, type: 'listRoomUpdate', roomList: [] })
   });
 
+
+  it('should return user list', async function() {
+
+    socket.emit('userList', {} );
+    const initialState = {}
+
+    const res = new Promise((res, reject) => {
+      socket.on('action', data => {
+        res(data);
+      })
+    });
+
+    const test = await res;
+    test.type.should.equal('listUser')
+  });
 
 });
