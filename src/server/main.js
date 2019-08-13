@@ -1,3 +1,4 @@
+import '@babel/polyfill'
 import 'regenerator-runtime/runtime';
 import params  from '../../params'
 import * as server from './index'

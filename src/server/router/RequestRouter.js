@@ -6,7 +6,6 @@ const logerror = debug('tetris:error');
 export default function initRequestRouter(req, res) {
   // if (req.url == 'test')
   const file = req.url === '/bundle.js' ? '/../../../dist/client/bundle.js' : '/../../../index.html';
-  console.log('file', file);
   fs.readFile(__dirname + file, (err, data) => {
     if (err) {
       console.log(err);

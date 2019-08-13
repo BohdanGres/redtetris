@@ -1,12 +1,7 @@
 import chai, {any, expect} from "chai"
 import {startServer, configureStore} from './helpers/server'
-import rootReducer from '../src/client/reducers/index';
-import {ping} from '../src/client/actions/server'
 import openSocket from 'socket.io-client';
 import params from '../params'
-import socket from "../src/client/utils/socket";
-import * as users from "../src/client/actions/userCreate";
-
 
 chai.should()
 
