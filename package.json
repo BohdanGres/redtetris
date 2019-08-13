@@ -42,6 +42,8 @@
     "enzyme": "^3.10.0",
     "enzyme-adapter-react-16": "^1.14.0",
     "glob": "^7.1.4",
+    "isparta": "^4.1.1",
+    "istanbul": "^0.4.5",
     "jsdom": "^15.1.1",
     "jsdom-global": "^3.0.2",
     "mocha": "^6.2.0",
@@ -61,7 +63,8 @@
     "srv-dev": "DEBUG=tetris:* babel-watch -w src src/server/main.js",
     "srv-dist": "pm2 start --interpreter ./node_modules/@babel/node/bin/babel-node.js --name red_tetris  ./src/server/main.js",
     "test": "mocha -r jsdom-global/register  -r @babel/register  --reporter spec",
-    "coverage": "NODE_ENV=test nyc mocha"
+    "coverage": "NODE_ENV=test nyc   report",
+    "cov": "babel-node node_modules/isparta/bin/isparta cover --report text --report html node_modules/mocha/bin/_mocha -- --reporter dot "
   },
   "repository": {
     "type": "git",
@@ -73,6 +76,11 @@
       "@babel/register",
       "jsdom-global/register",
       "@babel/preset-env"
+    ],
+    "cache": false,
+    "all": true,
+    "include": [
+      "src"
     ],
     "extensions": [
       ".js"
