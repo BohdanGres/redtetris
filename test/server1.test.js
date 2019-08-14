@@ -350,6 +350,7 @@ let roomId;
     expect(resp.conectionId).toBe(1);
   });
 
+
   test('test error class', () => {
     try {
       const error = new customError({message: '1', fild: '2'});
