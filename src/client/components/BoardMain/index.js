@@ -158,7 +158,7 @@ const BoardMain = ({ width, height, array, gameData, tables, userUuid }) => {
           <Grid item md={4}>
             <div className={`mainBoard ${newTable.isEnd ? 'looser' : ''}`}>
               {buildRow(newTable)}
-            </div>npm install @material-ui/core
+            </div>
           </Grid>
           <Grid item md={4}>
             <Grid container>
