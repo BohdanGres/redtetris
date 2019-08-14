@@ -22,7 +22,7 @@ export default class Update extends Base {
       this.throwError({ field: 'Game', message: 'Yoops, such game already exis' });
     }
     const userTable = game.tables[user.playerId];
-    if (userTable.isEnd) {
+    if (userTable && userTable.isEnd) {
       this.throwError({ field: 'User', message: 'Yoops, you looser' });
     }
 

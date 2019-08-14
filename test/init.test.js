@@ -13,6 +13,14 @@ import * as roomList from '../src/client/actions/roomListUpdate'
 import * as set from '../src/client/actions/setName'
 import * as users from '../src/client/actions/userCreate'
 
+
+import { JSDOM } from 'jsdom';
+
+const { window } = new JSDOM(`<div></div>`);
+
+global.window = window;
+global.document = window.document;
+
 // import {assert, expect, any} from 'chai'
 import { makeStyles } from '@material-ui/core/styles';
 

@@ -9,7 +9,6 @@ export default class Update extends Base {
     const game = await Game.findOne({
       roomId,
     });
-    console.log('FIND GAME IN ROW END', new Date());
 
     if (!game) {
       this.throwError({ field: 'Game', message: 'Yoops, such game dont exis' });

@@ -1,5 +1,12 @@
 import '@babel/polyfill'
 
+import { JSDOM } from 'jsdom';
+
+const { window } = new JSDOM(`<div></div>`);
+
+global.window = window;
+global.document = window.document;
+
 import {configureStore} from './helpers/server'
 
 import rootReducer from '../src/client/reducers/alert'

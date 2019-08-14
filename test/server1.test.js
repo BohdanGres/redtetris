@@ -147,6 +147,75 @@ let roomId;
   });
 
 
+
+
+  test('gAME START 1', async () => {
+    let res;
+    const sbscr = new service.Game.Create(await contextBuilder({ userUuid: '3' }));
+    try {
+      res = await sbscr.execute({ roomId: '-----' })
+    } catch (e) {
+      expect(e.message).toBe('Yoops, you need login first');
+    }
+  });
+
+  test('gAME START 2', async () => {
+    let res;
+    const sbscr = new service.Game.Create(await contextBuilder({ userUuid: uuid }));
+    try {
+      res = await sbscr.execute({ roomId: '-----' })
+    } catch (e) {
+      expect(e.message).toBe('Yoops, no such game');
+    }
+  });
+
+  test('Game start ', async () => {
+    const room = new service.Game.Create(await contextBuilder({ userUuid: uuid }));
+    const res = await room.execute( { roomId: roomId, playerId: uuid });
+    expect({ Status: res.Status, type: res.type }).toEqual({Status: 1, type: 'gameStart'  });
+  });
+
+
+
+
+
+  test('gAME uPDATE 1', async () => {
+    let res;
+    const sbscr = new service.Game.Update(await contextBuilder({ userUuid: '3' }));
+    try {
+      res = await sbscr.execute({ roomId: '-----' })
+    } catch (e) {
+      expect(e.message).toBe('Yoops, you need login first');
+    }
+  });
+
+  test('gAME uPDATE 2', async () => {
+    let res;
+    const sbscr = new service.Game.Update(await contextBuilder({ userUuid: uuid }));
+    try {
+      res = await sbscr.execute({ roomId: '-----' })
+    } catch (e) {
+      expect(e.message).toBe('Yoops, such game already exis');
+    }
+  });
+
+  test('Game uPDATE ', async () => {
+    console.log('uuid', uuid);
+    try {
+      const room = new service.Game.Update(await contextBuilder({userUuid: uuid}));
+      const res = await room.execute({'x': 5, 'y': 5, 'figure': [[1, 1, 1, 1]], roomId});
+      expect({Status: res.Status, type: res.type}).toEqual({Status: 1, type: 'gameStart'});
+    } catch (e) {
+      expect(e.message).toBe('Cannot read property \'table\' of undefined');
+    }
+    });
+
+
+
+
+
+
+
   test('Delete room test no user', async () => {
     const room = new service.Room.Delete(await contextBuilder({ userUuid: '123' }));
     try {
@@ -253,6 +322,16 @@ let roomId;
     const res = await room.execute( { name: roomName, playerId: uuidDva });
     expect({ type: res.type }).toEqual({ type: 'SUBSCRIBE'  });
   });
+
+
+
+
+
+
+
+
+
+
 
 
   test('Delete room test 4', async () => {
