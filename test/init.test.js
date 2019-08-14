@@ -112,17 +112,23 @@ describe('reducer', () => {
   test('should test ALERT_POP case', () => {
     expect(reducer( { a:0} , { b: 0, type: 'ALERT_POP' })).toEqual({ a:0, b: 0, type: 'ALERT_POP'})
   })
+  test('should test CHANGE_WIDTH case', () => {
+    expect(reducer( { a:0} , { width: 0, type: 'CHANGE_WIDTH' })).toEqual({ a:0, width: 0})
+  })
+  test('should test SET_NAME case', () => {
+    expect(reducer( { a:0} , { name: 'userName', type: 'SET_NAME' })).toEqual({ a:0, userName: 'userName'})
+  })
+  test('should test ERROR case', () => {
+    expect(reducer( { a:0} , { error: 'error', type: 'ERROR' })).toEqual({ a:0, error: 'error'})
+  })
+  test('should test USER_CREATE case', () => {
+    expect(reducer( { a:0} , { userData: 'd', type: 'USER_CREATE' })).toEqual({ a:0, 0: 'd'})
+  })
+  test('should test AUTH case', () => {
+    expect(reducer( { a:0} , { data: 'bgres', type: 'USER_CREATE' })).toEqual({ a:0, data: 'bgres'})
+  })
 
 })
-
-import * as mid from '../src/client/middleware/storeStateMiddleWare'
-
-// describe('middleware', () => {
-//   it('should test middleware', () => {
-//       expect(mid.storeStateMiddleWare({ getState })).to.deep.equal(any)
-//     }
-//   )
-// })
 
 import Update  from '../src/server/service/Session/Update'
 
