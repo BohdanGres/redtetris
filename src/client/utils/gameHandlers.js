@@ -51,20 +51,3 @@ export const xHandler = (state, action) => {
   return newStateX;
 };
 
-// export const handleCollision = (y, x, table, figure) => {
-//   connsole.log({y, x, table, figure});
-//   const setFigure = (table, figure) => {
-//     figure.map((row, i) => {
-//       (col, j) => {
-//         table[i + y][j + x] = 1;
-//       }
-//     });
-//   };
-//
-//   for (let i = 0; i < figure.length; i++) {
-//     if (table[y][x + i] > 0) {
-//       setFigure(table, figure);
-//       return;
-//     }
-//   }
-// };
