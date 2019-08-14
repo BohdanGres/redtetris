@@ -8,7 +8,6 @@ class GameContainr {
   }
 
   push(game) {
-    console.log('GAME PUSHED');
     const startedGame = new GameRunner(game, this.gameList.length);
     startedGame.runGame();
     this.gameList.push(startedGame);

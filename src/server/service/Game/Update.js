@@ -13,7 +13,6 @@ export default class Update extends Base {
     if (!user) {
       this.throwError({ field: 'User', message: 'Yoops, you need login first' });
     }
-    console.log('GAME START FIND IN UPDATE', new Date());
     const game = await Game.findOne({
       roomId,
     });
@@ -79,9 +78,7 @@ export default class Update extends Base {
 
     game.tables = allTable;//JSON.parse(JSON.stringify(allTable)) ;
     game.markModified('tables');
-    // console.log('GAME SAE IN UPDATE START', new Date());
     await game.save();
-    // console.log('GAME SAE IN UPDATE END', new Date());
 
     if (rowEmpted) {
       eventEmitter.emit('serverEvent',

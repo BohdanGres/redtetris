@@ -36,10 +36,8 @@ export default class Create extends Base {
       const conection = socket.io.sockets.connected[player.socketId];
       if (conection) {
         conection.join(game.roomId);
-        ids.push(player.playerId);
-      } else {
-        console.log('NO CONECTION');
       }
+      ids.push(player.playerId);
       player.status = 'IN GAME';
       player.save();
     });

@@ -2,9 +2,7 @@ import socket from './socket'
 
 const execQueue = async (game) => {
   if (game.inQueue && game.serviceQueue.length) {
-    console.log('START RUN SERVISE ', new Date());
     await game.serviceQueue[0]();
-    console.log('STOP RUN SERVISE ', new Date());
     game.serviceQueue.shift();
     if (!game.serviceQueue.length) {
       game.inQueue = false;

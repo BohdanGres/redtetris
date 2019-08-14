@@ -5,7 +5,6 @@ export default class Update extends Base {
   validateRules = ['blockedRoom', 'playerId', 'roomId'];
 
   async execute({ blockedRoom, playerId, roomId }) {
-    console.log('FIND GAME IN ROW START', new Date());
     const game = await Game.findOne({
       roomId,
     });

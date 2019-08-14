@@ -62,6 +62,7 @@ gameSchema.methods.InitGame = async function(playerIds) {
 
   const newTable = {};
   const board = generateTable();
+
   for ( let id of playerIds) {
     newTable[id] = {
       current: {
