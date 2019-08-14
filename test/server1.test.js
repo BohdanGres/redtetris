@@ -351,12 +351,6 @@ let roomId;
   });
 
 
-  test('test req class', () => {
-    const resp = new res({ id: 1});
-    expect(resp.conectionId).toBe(1);
-  });
-
-
   test('test error class', () => {
     try {
       const error = new customError({message: '1', fild: '2'});

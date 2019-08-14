@@ -125,8 +125,22 @@ import * as mid from '../src/client/middleware/storeStateMiddleWare'
 // })
 
 import Update  from '../src/server/service/Session/Update'
+import {startServer} from "./helpers/server";
+import params from "../params";
+import {droppDatabase} from "../src/server";
 
 describe('session',  () => {
+  let tetrisServer;
+  beforeAll(cb => startServer(params.server, function(err, server){
+    tetrisServer = server;
+    cb()
+  }));
+
+  afterAll(function(done){
+    tetrisServer.stop(done)
+  });
+
+
   test('session', async () => {
       try {
         const srvice = new Update();
