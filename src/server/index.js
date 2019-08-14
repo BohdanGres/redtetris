@@ -5,6 +5,8 @@ import mongoose from 'mongoose';
 import socket from './core/socket';
 import { iniEventRouter } from './router/EventRouter';
 import container from './core/gameContainer';
+import http from 'http';
+import socketClient from 'socket.io';
 
 import Piece from './model/Piece';
 const logerror = debug('tetris:error'),
@@ -12,7 +14,8 @@ const logerror = debug('tetris:error'),
 
 
 // mongoose.Promise = Promise;
-mongoose.connect(`mongodb://localhost/mongo42`);
+const dbName = process.env.MODE === 'test' ? 'testDb' : 'mongo42';
+mongoose.connect(`mongodb://localhost/${dbName}`);
 
 iniEventRouter();
 
@@ -33,10 +36,10 @@ const initEngine = io => {
 
 export function create(params) {
   const promise = new Promise( (resolve, reject) => {
-    const app = require('http').createServer()
+    const app = http.createServer()
     initApp(app, params, () =>{
 
-      const io = new require('socket.io')(app);
+      const io = new socketClient(app);
       socket.init(app);
       const stop = (cb) => {
         app.close( () => {
@@ -52,4 +55,9 @@ export function create(params) {
     })
   });
   return promise
+}
+
+
+export function droppDatabase() {
+  mongoose.connection.db.dropDatabase();
 }

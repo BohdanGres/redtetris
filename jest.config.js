@@ -18,7 +18,7 @@ module.exports = {
   clearMocks: true,
 
   // Indicates whether the coverage information should be collected while executing the test
-  // collectCoverage: false,
+  // collectCoverage: true,
 
   // An array of glob patterns indicating a set of files for which coverage information should be collected
   // collectCoverageFrom: null,
@@ -34,7 +34,7 @@ module.exports = {
   // A list of reporter names that Jest uses when writing coverage reports
   coverageReporters: [
   //   "json",
-  //   "text",
+    "text",
     "lcov",
   //   "clover"
   ],
@@ -109,7 +109,7 @@ module.exports = {
   // restoreMocks: false,
 
   // The root directory that Jest should scan for tests and modules within
-  // rootDir: null,
+  // rootDir: '.',
 
   // A list of paths to directories that Jest should use to search for files in
   // roots: [
@@ -139,7 +139,7 @@ module.exports = {
 
   // The glob patterns Jest uses to detect test files
   // testMatch: [
-  //   "**/__tests__/**/*.[jt]s?(x)",
+  //   "(tests/.*|(\\\\.|/)(test|spec))\\\\.[jt]sx?$",
   //   "**/?(*.)+(spec|test).[tj]s?(x)"
   // ],
 

@@ -28,9 +28,9 @@ export default class Create extends Base {
       status :   'pending',
     });
 
-    if (!newGame) {
-      this.throwError({ field: 'Game', message: 'Yoops, WTF!!!!' });
-    }
+    // if (!newGame) {
+    //   this.throwError({ field: 'Game', message: 'Yoops, WTF!!!!' });
+    // }
 
    eventEmitter.emit('serverEvent', { event: 'roomListUpdate', data: {} });
 

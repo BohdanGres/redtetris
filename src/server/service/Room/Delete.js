@@ -26,7 +26,6 @@ export default class Update extends Base {
     const users = await Player.find({
       playerId: otherPlayer
     });
-    console.log(users);
     users.forEach(user => {
       socket.emit('action', { type: 'reset' }, user.socketId);
     });
