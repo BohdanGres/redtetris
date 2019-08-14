@@ -384,6 +384,7 @@ describe('session',  () => {
       try {
         const srvice = new Update();
         let result = await srvice.execute(['name', 'password']);
+        expect(result).toBe('t');
       } catch (e) {
         expect(e.message).toBe('Yoops, something go wrong')
       }
