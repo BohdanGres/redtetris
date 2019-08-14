@@ -112,17 +112,53 @@ describe('reducer', () => {
   test('should test ALERT_POP case', () => {
     expect(reducer( { a:0} , { b: 0, type: 'ALERT_POP' })).toEqual({ a:0, b: 0, type: 'ALERT_POP'})
   })
+  test('should test CHANGE_WIDTH case', () => {
+    expect(reducer( { a:0} , { width: 0, type: 'CHANGE_WIDTH' })).toEqual({ a:0, width: 0})
+  })
+  test('should test SET_NAME case', () => {
+    expect(reducer( { a:0} , { name: 'userName', type: 'SET_NAME' })).toEqual({ a:0, userName: 'userName'})
+  })
+  test('should test ERROR case', () => {
+    expect(reducer( { a:0} , { error: 'error', type: 'ERROR' })).toEqual({ a:0, error: 'error'})
+  })
+  test('should test USER_CREATE case', () => {
+    expect(reducer( { a:0} , { userData: 'd', type: 'USER_CREATE' })).toEqual({ a:0, 0: 'd'})
+  })
+  test('should test AUTH case', () => {
+    expect(reducer( { a:0} , { dat:0, type: 'AUTH' })).toEqual({ a:0})
+  })
+  test('should test PAGE_CHANGE case', () => {
+    expect(reducer( { a:0} , { page: 1, type: 'PAGE_CHANGE' })).toEqual({ a:0, page: 1})
+  })
+  test('should test ROOM_CREATE case', () => {
+    expect(reducer( { a:0} , { room: 1, type: 'ROOM_CREATE' })).toEqual({ a:0, roomPending: 1})
+  })
+  test('should test ROOM_SUBSCRIBE case', () => {
+    expect(reducer( { a:0} , { room: 1, type: 'ROOM_SUBSCRIBE' })).toEqual({ a:0, roomPending: 1})
+  })
+  test('should test CLEAR_STORE case', () => {
+    expect(reducer( { a:0} , { initialStore: '', type: 'CLEAR_STORE' }, '', '', 'NEW_USER', true)).toEqual({userUuid: '', userName: '', userType: 'NEW_USER', loginPopup: true})
+  })
+  test('should test GAME_START case', () => {
+    expect(reducer( { a:0} , { gameData: 0, type: 'GAME_START' }, 'game', false )).toEqual({ a:0, page: 'game', blockDown: false, roomPending: null})
+  })
+  test('should test GAME_UPDATE case', () => {
+    expect(reducer( { a:0} , { gameData: 0, type: 'GAME_UPDATE' }, 'game', false )).toEqual({ a:0, page: 'game', blockDown: false, roomPending: null})
+  })
+  test('should test BLOCK_DOWN case', () => {
+    expect(reducer( { a:0} , { type: 'BLOCK_DOWN' }, true )).toEqual({ a:0, blockDown: true})
+  })
+  test('should test USER_LIST case', () => {
+    expect(reducer( { a:0} , { users: 2, type: 'USER_LIST' })).toEqual({ a:0, users: 2})
+  })
+  test('should test SESSION_INIT case', () => {
+    expect(reducer( { a:0} , { roomPending: 'room', type: 'SESSION_INIT' }, null )).toEqual({ a:0, roomPending: 'room', winerName: null})
+  })
+  test('should test GAME_END case', () => {
+    expect(reducer( { a:0} , { name: 'winner', type: 'GAME_END' })).toEqual({ a:0, winerName: 'winner'})
+  })
 
 })
-
-import * as mid from '../src/client/middleware/storeStateMiddleWare'
-
-// describe('middleware', () => {
-//   it('should test middleware', () => {
-//       expect(mid.storeStateMiddleWare({ getState })).to.deep.equal(any)
-//     }
-//   )
-// })
 
 import Update  from '../src/server/service/Session/Update'
 import {startServer} from "./helpers/server";
