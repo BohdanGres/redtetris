@@ -46,7 +46,6 @@ export default class Create extends Base {
 
 
     const startedGame = await game.InitGame(ids);
-    console.log('==============================================')
     const cont = await container;
 
     cont.push(startedGame.getValue());

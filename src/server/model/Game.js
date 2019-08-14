@@ -77,6 +77,7 @@ gameSchema.methods.InitGame = async function(playerIds) {
   }
 
   this.tables = newTable;
+  this.markModified('tables');
   this.status = 'IN GAME';
   await this.save();
 
