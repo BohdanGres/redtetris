@@ -125,7 +125,37 @@ describe('reducer', () => {
     expect(reducer( { a:0} , { userData: 'd', type: 'USER_CREATE' })).toEqual({ a:0, 0: 'd'})
   })
   test('should test AUTH case', () => {
-    expect(reducer( { a:0} , { data: 'bgres', type: 'USER_CREATE' })).toEqual({ a:0, data: 'bgres'})
+    expect(reducer( { a:0} , { dat:0, type: 'AUTH' })).toEqual({ a:0})
+  })
+  test('should test PAGE_CHANGE case', () => {
+    expect(reducer( { a:0} , { page: 1, type: 'PAGE_CHANGE' })).toEqual({ a:0, page: 1})
+  })
+  test('should test ROOM_CREATE case', () => {
+    expect(reducer( { a:0} , { room: 1, type: 'ROOM_CREATE' })).toEqual({ a:0, roomPending: 1})
+  })
+  test('should test ROOM_SUBSCRIBE case', () => {
+    expect(reducer( { a:0} , { room: 1, type: 'ROOM_SUBSCRIBE' })).toEqual({ a:0, roomPending: 1})
+  })
+  test('should test CLEAR_STORE case', () => {
+    expect(reducer( { a:0} , { initialStore: '', type: 'CLEAR_STORE' }, '', '', 'NEW_USER', true)).toEqual({userUuid: '', userName: '', userType: 'NEW_USER', loginPopup: true})
+  })
+  test('should test GAME_START case', () => {
+    expect(reducer( { a:0} , { gameData: 0, type: 'GAME_START' }, 'game', false )).toEqual({ a:0, page: 'game', blockDown: false, roomPending: null})
+  })
+  test('should test GAME_UPDATE case', () => {
+    expect(reducer( { a:0} , { gameData: 0, type: 'GAME_UPDATE' }, 'game', false )).toEqual({ a:0, page: 'game', blockDown: false, roomPending: null})
+  })
+  test('should test BLOCK_DOWN case', () => {
+    expect(reducer( { a:0} , { type: 'BLOCK_DOWN' }, true )).toEqual({ a:0, blockDown: true})
+  })
+  test('should test USER_LIST case', () => {
+    expect(reducer( { a:0} , { users: 2, type: 'USER_LIST' })).toEqual({ a:0, users: 2})
+  })
+  test('should test SESSION_INIT case', () => {
+    expect(reducer( { a:0} , { roomPending: 'room', type: 'SESSION_INIT' }, null )).toEqual({ a:0, roomPending: 'room', winerName: null})
+  })
+  test('should test GAME_END case', () => {
+    expect(reducer( { a:0} , { name: 'winner', type: 'GAME_END' })).toEqual({ a:0, winerName: 'winner'})
   })
 
 })
