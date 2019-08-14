@@ -86,42 +86,6 @@ describe('user test all actions', () => {
 })
 
 
-import * as style from '../src/client/components/BoardMain/index'
-import * as table from '../src/client/components/BoardMain/index'
-
-// describe('Board main', () => {
-//   it('should styles', () => {
-//       expect(style.makeStyles()).to.deep.equal({theme: any})
-//     }
-//   )
-//   it('BuildRow', function() {
-//       expect(buildRow({ table })).to.deep.equal(<Row key={i}  row={row}/>)
-//     }
-//   )
-// })
-
-//
-// //need to be fixed with DOM - make a lot of profit for tests - fixed
-//
-import * as index from '../src/client/index'
-
-// describe('client', () => {
-//   it('should test getting tetris id', () => {
-//       expect(index.getElementByid()).to.deep.equal({ app: 'tetris'})
-//     }
-//   )
-// })
-
-import * as indexserver from '../src/server/index'
-import  params from '../params';
-//
-// describe('server', () => {
-//   it('should test server init', () => {
-//       expect(indexserver.create(params.server)).to.deep.equal(promise)
-//     }
-//   )
-// })
-
 import Create from '../src/server/service/Room/Subscriber/Create'
 
 describe('should return room Subscribtion', () => {
@@ -136,14 +100,20 @@ describe('should return room Subscribtion', () => {
   })
 })
 
-import red from '../src/client/reducers/index'
+import  reducer from '../src/client/reducers/alert'
 
-// describe('reducers', () => {
-//   it('should test reducers', () => {
-//       expect(red.default()).to.deep.equal(any)
-//     }
-//   )
-// })
+describe('reducer', () => {
+  test('should test server/ping case', () => {
+      expect(reducer( { a:0} , { type: 'server/ping'})).toEqual({ a:0})
+    })
+  test('should test INIT_TYPE case', () => {
+    expect(reducer( { a:0} , { type: 'INIT_TYPE', body: {b :0}})).toEqual({ a:0, b: 0})
+  })
+  test('should test ALERT_POP case', () => {
+    expect(reducer( { a:0} , { b: 0, type: 'ALERT_POP' })).toEqual({ a:0, b: 0, type: 'ALERT_POP'})
+  })
+
+})
 
 import * as mid from '../src/client/middleware/storeStateMiddleWare'
 
@@ -157,13 +127,16 @@ import * as mid from '../src/client/middleware/storeStateMiddleWare'
 import Update  from '../src/server/service/Session/Update'
 
 describe('session',  () => {
-  test('session', async function () {
+  test('session', async () => {
       try {
         const srvice = new Update();
         let result = await srvice.execute(['name', 'password']);
+        expect(result).toBe('Yoops, something go wrong')
+
       } catch (e) {
         expect(e.message).toBe('Yoops, something go wrong')
       }
     }
   )
 })
+
