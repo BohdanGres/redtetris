@@ -231,9 +231,27 @@ let roomId;
 
   test('Subscr delete test 3', async () => {
     const room = new service.Room.Subscriber.Delete(await contextBuilder({ userUuid: uuidDva }));
-    const res = await room.execute( { roomId: roomId, playerId: uuid });
-    roomId = res.roomId;
+    const res = await room.execute( { roomId: roomId, playerId: uuidDva });
     expect({ Status: res.Status, type: res.type }).toEqual({Status: 1, type: 'reset'  });
+  });
+
+
+  test('UrlRoom delete test 1', async () => {
+    const room = new service.Room.UrlCreate.Delete(await contextBuilder({ userUuid: uuidDva }));
+    const res = await room.execute( { roomId: roomId, playerId: uuidDva });
+    expect({ type: res.type }).toEqual({ type: 'NO_USER'  });
+  });
+
+  test('UrlRoom delete test 1', async () => {
+    const room = new service.Room.UrlCreate.Create(await contextBuilder({ userUuid: uuidDva }));
+    const res = await room.execute( { name: 'TEST_ROOM', playerId: uuidDva });
+    expect({ type: res.type }).toEqual({ type: 'CREATE'  });
+  });
+
+  test('UrlRoom delete test 1', async () => {
+    const room = new service.Room.UrlCreate.Create(await contextBuilder({ userUuid: uuidDva }));
+    const res = await room.execute( { name: roomName, playerId: uuidDva });
+    expect({ type: res.type }).toEqual({ type: 'SUBSCRIBE'  });
   });
 
 

@@ -41,7 +41,7 @@ class Socket {
   }
 
   removePlayerFromRoom(id, name) {
-    this.io.sockets.sockets[id].leave(name)
+    this.io.sockets.sockets[id] ? this.io.sockets.sockets[id].leave(name) : null
   }
 }
 
