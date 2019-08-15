@@ -249,7 +249,7 @@ describe('reducer', () => {
 
 })
 
-import { handleCollision } from './../src/client/utils/gameHandlers'
+import { handleCollision, xHandler } from './../src/client/utils/gameHandlers'
 
 describe('hendler test',  () => {
   const y =2;
@@ -259,6 +259,59 @@ describe('hendler test',  () => {
 
   handleCollision(x, y, table, figure);
   expect(table).toEqual([[0,0,0,0], [0,0,0,0], [0,0,0,0], [0,0,0,0]]);
+
+
+})
+
+describe('hendler test',  () => {
+  const y =2;
+  const x = 2;
+  const table = [[0,0,0,0,], [0,0,0,0,], [0,0,0,0,], [0,0,0,0]];
+  const figure = [[1,1,1,1]];
+
+  const state = {
+    userUuid : 'd',
+    i:0,
+    tables: {
+      d: {
+        current:
+          { cord :
+              {
+                y:2,
+                x: 2
+              },
+            figure: {
+              figure :  [[1,1,1,1]]}
+          },
+        table: [[0,0,0,0,0,0,0,0,0,0], [0,0,0,0,0,0,0,0,0,0], [0,0,0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0,0,0]]
+      }
+    }
+    } ;
+
+  const stateNew = {
+    userUuid : 'd',
+    i:1,
+    tables: {
+      d: {
+        current:
+          { cord :
+              {
+                y:2,
+                x: 3
+              },
+            figure: {
+              figure :  [[1,1,1,1]]}
+          },
+        table: [[0,0,0,0,0,0,0,0,0,0], [0,0,0,0,0,0,0,0,0,0], [0,0,0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0,0,0]]
+      }
+    }
+  } ;
+
+
+  const action = { pos: 1, type: 'Y_ARROW' };
+
+
+  expect(xHandler(state, action)).toEqual(stateNew);
 
 
 })

@@ -25,13 +25,6 @@ export default class Delete extends Base {
     }
 
     if (l === 1) {
-      const user = await Player.findOne({
-        playerId : winers[0]
-      });
-      if (!user) {
-        this.throwError({ field: 'User', message: 'Yoops, no such user' });
-      }
-
       const gameManager = container.getGame(game.roomId);
       gameManager.stopGame();
       socket.sendToRoom(game.roomId, { type: 'gameWiner', name: 'Not you' });
@@ -44,7 +37,6 @@ export default class Delete extends Base {
         Status: 1,
         type: 'gameEnd',
         gameId: game.roomId,
-        winer: user,
       };
     }
 

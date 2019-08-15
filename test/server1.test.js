@@ -173,7 +173,6 @@ let roomId;
     }
   });
   test('Game uPDATE ', async () => {
-    console.log('uuid', uuid);
       const room = new service.Game.Update(await contextBuilder({userUuid: uuid}));
       const res = await room.execute({'x': 5, 'y': 5, 'figure': [[1, 1, 1, 1]], roomId});
       expect({Status: res.Status, type: res.type}).toEqual({Status: 1, type: 'gameUpdate'});
@@ -198,7 +197,6 @@ let roomId;
     }
   });
   test('Game delete ', async () => {
-    console.log('uuid', uuid);
     const room = new service.Game.Delete(await contextBuilder({userUuid: uuid}));
     const res = await room.execute({roomId});
     expect({Status: res.Status, type: res.type}).toEqual({Status: 1, type: 'gameEnd'});
@@ -223,7 +221,6 @@ let roomId;
     }
   });
   test('Game row update ', async () => {
-    console.log('uuid', uuid);
     const room = new service.Game.Row.Update(await contextBuilder({userUuid: uuid}));
     const res = await room.execute({roomId});
     expect({Status: res.Status, type: res.type}).toEqual({Status: 1, type: 'gameUpdateRow'});
